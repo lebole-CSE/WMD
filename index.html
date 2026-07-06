@@ -1,686 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SciBrilliance – IGCSE Science E-Learning</title>
-  <meta name="description" content="Master IGCSE Chemistry, Biology, and Physics with SciBrilliance. Structured courses, downloadable notes, practice quizzes and progress tracking." />
-
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" />
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <!-- Shared Stylesheet -->
-  <link rel="stylesheet" href="style.css" />
-
-  <style>
-    /* ── Page-specific styles ── */
-
-    
-    .site-banner {
-      background: var(--navy);
-      padding: 5.5rem 0 4.5rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .site-banner::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 80% 60% at 70% 50%, rgba(14,138,138,.18) 0%, transparent 70%),
-        radial-gradient(ellipse 60% 80% at 10% 80%, rgba(212,168,67,.08) 0%, transparent 60%);
-    }
-    .site-banner::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image:
-        repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,.022) 40px),
-        repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,.022) 40px);
-    }
-    .banner-inner { position: relative; z-index: 2; }
-
-    .banner-eyebrow {
-      font-size: .68rem;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1.1rem;
-      font-weight: 600;
-    }
-    .banner-title {
-      font-size: clamp(2.1rem, 5.5vw, 3.8rem);
-      color: var(--white);
-      line-height: 1.12;
-      margin-bottom: 1.3rem;
-      font-weight: 600;
-    }
-    .banner-title em { font-style: normal; color: var(--teal-lt); }
-    .banner-desc {
-      font-size: 1.03rem;
-      color: rgba(255,255,255,.68);
-      max-width: 510px;
-      line-height: 1.78;
-      margin-bottom: 2.2rem;
-    }
-
-    /* Banner stats */
-    .banner-stats { display: flex; gap: 2.5rem; margin-top: 3rem; flex-wrap: wrap; }
-    .bstat .n {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.3rem;
-      font-weight: 700;
-      color: var(--gold);
-      line-height: 1;
-    }
-    .bstat .l {
-      font-size: .7rem;
-      text-transform: uppercase;
-      letter-spacing: .12em;
-      color: rgba(255,255,255,.42);
-      margin-top: .2rem;
-    }
-
-    /* Science panel cards */
-    .banner-panel { display: flex; align-items: center; justify-content: center; position: relative; z-index: 2; }
-    .sci-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; max-width: 320px; }
-    .sci-card {
-      border-radius: 16px;
-      padding: 1.5rem 1.25rem;
-      transition: transform .25s;
-    }
-    .sci-card:hover { transform: translateY(-5px); }
-    .sci-card.c1 { background: rgba(27,110,58,.22);  border: 1px solid rgba(27,110,58,.3);  }
-    .sci-card.c2 { background: rgba(18,80,160,.22);  border: 1px solid rgba(18,80,160,.3);  }
-    .sci-card.c3 { background: rgba(107,31,155,.22); border: 1px solid rgba(107,31,155,.3); }
-    .sci-card.c4 { background: rgba(14,138,138,.22); border: 1px solid rgba(14,138,138,.3); }
-    .sci-grid { grid-template-rows: auto auto; }
-    .sci-grid > :nth-child(2) { margin-top: 1rem; }
-    .sci-grid > :nth-child(3) { margin-top: -1rem; }
-    .sci-icon { font-size: 1.75rem; margin-bottom: .6rem; }
-    .sci-card h4 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.05rem;
-      color: var(--white);
-      margin-bottom: .2rem;
-    }
-    .sci-card p { font-size: .74rem; color: rgba(255,255,255,.52); margin: 0; line-height: 1.45; }
-
-    /* Features section */
-    .features-bg { background: var(--cream); }
-
-    /* Progress section */
-    .prog-section { background: var(--navy); }
-    .prog-card {
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.1);
-      border-radius: var(--radius-lg);
-      padding: 1.5rem;
-    }
-    .prog-card h4 {
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 600;
-      font-size: .95rem;
-      color: var(--white);
-      margin-bottom: 1.1rem;
-    }
-    .pb-row { margin-bottom: .9rem; }
-    .pb-row label {
-      font-size: .8rem;
-      color: rgba(255,255,255,.6);
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: .35rem;
-    }
-    .pb-row label span { color: var(--gold-lt); font-weight: 600; }
-
-    /* Testimonials */
-    .testi-bg { background: var(--cream); }
-
-    /* CTA */
-    .cta-section {
-      background: linear-gradient(135deg, var(--teal) 0%, #0a6e6e 100%);
-      padding: 4.5rem 0;
-      text-align: center;
-    }
-    .cta-section h2 { color: var(--white); margin-bottom: .75rem; font-size: clamp(1.65rem,3vw,2.3rem); }
-    .cta-section p  { color: rgba(255,255,255,.78); margin-bottom: 2rem; }
-
-    /* Responsive */
-    @media (max-width: 991.98px) {
-      .site-banner { padding: 3.5rem 0 3rem; text-align: center; }
-      .banner-desc { margin: 0 auto 2rem; }
-      .banner-stats { justify-content: center; }
-      .banner-panel { margin-top: 3rem; }
-      .sci-grid { max-width: 280px; margin: 0 auto; }
-      .sci-card.c2, .sci-card.c3 { margin-top: 0; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title SciBrilliance></title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<!-- Skip Link -->
-<a href="#main-content" class="skip-link">Skip to main content</a>
+    <header>
 
-<!-- ═══════════════════ NAVBAR ═══════════════════ -->
-<nav class="navbar navbar-expand-lg sticky-top" role="navigation" aria-label="Main navigation">
-  <div class="container">
+        <img src="SciBrilliance Logo.png" alt="SciBrilliance Logo" class="logo">
+        <h1>SciBrilliance</h1>
+        <p>A site where students get to enhance their performance in all sciences</p>
+    </header>
 
-    <a class="navbar-brand" href="index.html" aria-label="SciBrilliance – Home">
-      <span class="brand-name">Sci<span>Brilliance</span></span>
-      <span class="brand-tag">IGCSE Science Platform</span>
-    </a>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="resources.html">Resources</a>
+        <a href="quiz.html">Quiz</a>
+        <a href="forum.html">Forum</a>
+        <a href="feedback.html">Feedback</a>
+        
+    </nav>
 
-    <button class="navbar-toggler" type="button"
-      data-bs-toggle="collapse" data-bs-target="#mainNav"
-      aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <main>
 
-    <div class="collapse navbar-collapse" id="mainNav">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
-        <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="courses.html">Courses</a></li>
-        <li class="nav-item"><a class="nav-link" href="resources.html">Resources</a></li>
-        <li class="nav-item"><a class="nav-link" href="quiz.html">Quiz</a></li>
-        <li class="nav-item"><a class="nav-link" href="forum.html">Forum</a></li>
-        <li class="nav-item"><a class="nav-link" href="feedback.html">Feedback</a></li>
-        <li class="nav-item ms-lg-3">
-          <button class="nav-link btn-login-nav" id="auth-btn"
-            data-bs-toggle="modal" data-bs-target="#loginModal"
-            aria-label="Log in or register">
-            <i class="fa fa-user me-1" aria-hidden="true"></i>Log In
-          </button>
-        </li>
-      </ul>
+         <div class="ad-box">
+            <h3>Advertisement</h3>
+
+            <img src="https://th.bing.com/th/id/OIP.zORFfZJFdUOnobI9NRzQIQHaDn?w=251&h=180&c=7&r=0&o=7&pid=1.7&rm=3" alt="free textbook website" width="400px">
+
+            <p>Your advertisement here.</p>
+        </div>
+
     </div>
 
-  </div>
-</nav>
+        <section>
+            <h2>Welcome</h2>
+            <p>
+                This website is made to help students understand basic science topics in a simple way.
+                You can learn, read notes, and practice science questions.
+            </p>
 
-<!-- ═══════════════════ MAIN ═══════════════════ -->
-<main id="main-content">
+            <img src="https://www.shutterstock.com/image-photo/onitsha-anambra-state-nigeria-june-600nw-2311718297.jpg" alt="Senior School Student " width="400px">
+       
+        </section>
 
-  <!-- ── HERO BANNER ── -->
-  <header class="site-banner" aria-label="Welcome to SciBrilliance">
-    <div class="container">
-      <div class="row align-items-center gy-5">
+        <section>
+            <h2>What You Can Find Here</h2>
 
-        <!-- Left: copy -->
-        <div class="col-lg-6 banner-inner">
-          <p class="banner-eyebrow">Cambridge IGCSE Science</p>
-          <h1 class="banner-title">Master <em>Chemistry, Biology</em> &amp; Physics</h1>
-          <p class="banner-desc">
-            SciBrilliance delivers structured IGCSE science courses with expert revision notes,
-            interactive quizzes, and personal progress tracking — everything you need to achieve
-            your target grade.
-          </p>
-          <div class="d-flex flex-wrap gap-3">
-            <a href="courses.html" class="btn-primary-sb">Explore Courses</a>
-            <button class="btn-ghost-sb" data-bs-toggle="modal" data-bs-target="#loginModal">
-              Create Free Account
-            </button>
-          </div>
-          <div class="banner-stats" role="list" aria-label="Platform statistics">
-            <div class="bstat" role="listitem"><div class="n">3</div><div class="l">IGCSE Subjects</div></div>
-            <div class="bstat" role="listitem"><div class="n">10+</div><div class="l">Topics Covered</div></div>
-            <div class="bstat" role="listitem"><div class="n">5+</div><div class="l">Practice Questions</div></div>
-          </div>
-        </div>
+            <article>
+                <h3>Physics</h3>
+                <p>Learn about motion, forces, energy, and electricity.</p>
+                <img src="https://tse2.mm.bing.net/th/id/OIP.m1d-Nd3HDSwxKq605lVTPQHaFL?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Physics Equation" width="400px">
+            </article>
 
-        <!-- Right: sci panel -->
-        <div class="col-lg-6 banner-panel">
-          <div class="sci-grid" role="img" aria-label="Science subjects illustration">
-            <div class="sci-card c1">
-              <div class="sci-icon" aria-hidden="true"><i class="fa fa-flask" style="color:#4caf6e"></i></div>
-              <h4>Chemistry</h4>
-              <p>Atoms, bonds, reactions &amp; organic</p>
-            </div>
-            <div class="sci-card c2">
-              <div class="sci-icon" aria-hidden="true"><i class="fa fa-dna" style="color:#64b5f6"></i></div>
-              <h4>Biology</h4>
-              <p>Cells, genetics &amp; body systems</p>
-            </div>
-            <div class="sci-card c3">
-              <div class="sci-icon" aria-hidden="true"><i class="fa fa-atom" style="color:#ce93d8"></i></div>
-              <h4>Physics</h4>
-              <p>Forces, waves &amp; electricity</p>
-            </div>
-            <div class="sci-card c4">
-              <div class="sci-icon" aria-hidden="true"><i class="fa fa-chart-line" style="color:#f0c96a"></i></div>
-              <h4>Progress</h4>
-              <p>Track your growth per topic</p>
-            </div>
-          </div>
-        </div>
+            <article>
+                <h3>Chemistry</h3>
+                <p>Learn about atoms, elements, reactions, and the periodic table.</p>
+                <img src="https://images7.alphacoders.com/104/1048953.jpg" alt="Chemistry picture" width="400px">
+        
+            </article>
 
-      </div>
-    </div>
-  </header>
+            <article>
+                <h3>Biology</h3>
+                <p>Learn about living things, cells, humans, and ecosystems.</p>
+                <img src="https://tse3.mm.bing.net/th/id/OIP.do3YYszG09yEar7DsQw9jQAAAA?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Biology Picture" width="400px">
+            </article>
 
-  <!-- ── COURSES PREVIEW ── -->
-  <section class="bg-cream" aria-labelledby="courses-heading">
-    <div class="container">
-      <div class="text-center mb-5">
-        <p class="sec-label" style="color:var(--teal)">IGCSE Subjects</p>
-        <h2 class="sec-title" id="courses-heading">Three Sciences, One Platform</h2>
-        <p class="sec-lead mx-auto text-center">
-          All three sciences mapped precisely to the Cambridge IGCSE syllabus —
-          taught with clarity, structure, and depth.
-        </p>
-      </div>
+        </section>
 
-      <div class="row g-4">
+        <section>
+            <h2>Quick Search</h2>
 
-        <!-- Chemistry -->
-        <div class="col-md-4">
-          <article class="course-card" aria-label="IGCSE Chemistry course">
-            <div class="course-stripe cs-chem"></div>
-            <div class="course-body">
-              <div class="course-icon ci-chem" aria-hidden="true"><i class="fa fa-flask"></i></div>
-              <h3>IGCSE Chemistry</h3>
-              <p>From atomic structure to organic reactions — complete syllabus coverage with worked examples and past paper practice.</p>
-              <div class="topic-pills" aria-label="Chemistry topics">
-                <span class="topic-pill">Atomic Structure</span>
-                <span class="topic-pill">Periodic Table</span>
-                <span class="topic-pill">Acids &amp; Bases</span>
-                <span class="topic-pill">Organic Chem</span>
-                <span class="topic-pill">Energetics</span>
-              </div>
-              <a href="courses.html#chemistry" class="btn-course bc-chem">Start Chemistry</a>
-            </div>
-          </article>
-        </div>
+            <p>Type a topic you want to learn about:</p>
 
-        <!-- Biology -->
-        <div class="col-md-4">
-          <article class="course-card" aria-label="IGCSE Biology course">
-            <div class="course-stripe cs-bio"></div>
-            <div class="course-body">
-              <div class="course-icon ci-bio" aria-hidden="true"><i class="fa fa-dna"></i></div>
-              <h3>IGCSE Biology</h3>
-              <p>Life at every scale — from cells and genetics to ecosystems, all aligned with the Cambridge IGCSE specification.</p>
-              <div class="topic-pills" aria-label="Biology topics">
-                <span class="topic-pill">Cell Biology</span>
-                <span class="topic-pill">Genetics</span>
-                <span class="topic-pill">Transport</span>
-                <span class="topic-pill">Respiration</span>
-                <span class="topic-pill">Evolution</span>
-              </div>
-              <a href="courses.html#biology" class="btn-course bc-bio">Start Biology</a>
-            </div>
-          </article>
-        </div>
+            <input type="text" placeholder="Example: Photosynthesis">
+            <button>Search</button>
 
-        <!-- Physics -->
-        <div class="col-md-4">
-          <article class="course-card" aria-label="IGCSE Physics course">
-            <div class="course-stripe cs-phys"></div>
-            <div class="course-body">
-              <div class="course-icon ci-phys" aria-hidden="true"><i class="fa fa-atom"></i></div>
-              <h3>IGCSE Physics</h3>
-              <p>Forces, fields, waves, and radioactivity — conceptual understanding and mathematical problem-solving together.</p>
-              <div class="topic-pills" aria-label="Physics topics">
-                <span class="topic-pill">Forces &amp; Motion</span>
-                <span class="topic-pill">Waves</span>
-                <span class="topic-pill">Electricity</span>
-                <span class="topic-pill">Magnetism</span>
-                <span class="topic-pill">Nuclear Physics</span>
-              </div>
-              <a href="courses.html#physics" class="btn-course bc-phys">Start Physics</a>
-            </div>
-          </article>
-        </div>
+        </section>
 
-      </div>
-    </div>
-  </section>
+        <section>
+            <h2>Get Started</h2>
 
-  <!-- ── FEATURES ── -->
-  <section class="features-bg" aria-labelledby="features-heading">
-    <div class="container">
-      <div class="row gy-5 align-items-center">
+            <p>Click below to start learning:</p>
 
-        <div class="col-lg-4">
-          <p class="sec-label" style="color:var(--teal)">Platform Features</p>
-          <h2 class="sec-title" id="features-heading">Built for IGCSE Success</h2>
-          <p class="sec-lead">
-            Every feature is purpose-built to help you study efficiently,
-            track your growth, and walk into your exams with confidence.
-          </p>
-          <a href="courses.html" class="btn-primary-sb d-inline-block mt-3"
-             style="background:var(--navy);color:var(--white)">Browse All Courses</a>
-        </div>
+            <a href="courses.html"><button>Go to Courses</button></a>
+            <a href="resources.html"><button>View Resources</button></a>
 
-        <div class="col-lg-8">
-          <div class="row g-3">
+        </section>
 
-            <div class="col-sm-6">
-              <div class="feat-item">
-                <div class="feat-ico" aria-hidden="true"><i class="fa fa-graduation-cap"></i></div>
-                <div>
-                  <h4>Syllabus-Aligned</h4>
-                  <p>Every lesson follows the Cambridge IGCSE specification precisely — nothing missed, nothing wasted.</p>
-                </div>
-              </div>
-            </div>
+    </main>
 
-            <div class="col-sm-6">
-              <div class="feat-item">
-                <div class="feat-ico" aria-hidden="true"><i class="fa fa-chart-bar"></i></div>
-                <div>
-                  <h4>Progress Tracking</h4>
-                  <p>Log in to see completed topics, quiz scores, and subject mastery updated in real time.</p>
-                </div>
-              </div>
-            </div>
+    <footer>
+        <p>&copy; 2026 SciBrilliance</p>
+    </footer>
 
-            <div class="col-sm-6">
-              <div class="feat-item">
-                <div class="feat-ico" aria-hidden="true"><i class="fa fa-file-pdf"></i></div>
-                <div>
-                  <h4>Downloadable Notes</h4>
-                  <p>High-quality PDF revision notes for every topic, crafted for offline study before exams.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-sm-6">
-              <div class="feat-item">
-                <div class="feat-ico" aria-hidden="true"><i class="fa fa-check-circle"></i></div>
-                <div>
-                  <h4>Practice Quizzes</h4>
-                  <p>Topic-by-topic quizzes with instant feedback, detailed explanations, and a score history.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-sm-6">
-              <div class="feat-item">
-                <div class="feat-ico" aria-hidden="true"><i class="fa fa-comments"></i></div>
-                <div>
-                  <h4>Student Forum</h4>
-                  <p>Ask questions and discuss tricky topics with fellow IGCSE science students.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-sm-6">
-              <div class="feat-item">
-                <div class="feat-ico" aria-hidden="true"><i class="fa fa-universal-access"></i></div>
-                <div>
-                  <h4>Fully Accessible</h4>
-                  <p>Screen reader support, keyboard navigation, and high-contrast design for every learner.</p>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ── PROGRESS DASHBOARD ── -->
-  <section class="prog-section" aria-labelledby="progress-heading">
-    <div class="container">
-      <div class="row gy-4 align-items-center">
-
-        <div class="col-lg-5">
-          <p class="sec-label" style="color:var(--gold)">Your Dashboard</p>
-          <h2 class="sec-title" id="progress-heading" style="color:var(--white)">
-            Track Every Step of Your Revision
-          </h2>
-          <p style="color:rgba(255,255,255,.65);line-height:1.78;margin-bottom:1.75rem">
-            Your personal dashboard shows exactly which topics you have completed,
-            how you scored on each quiz, and where to focus next.
-            Create a free account to activate it.
-          </p>
-          <button class="btn-primary-sb" data-bs-toggle="modal" data-bs-target="#loginModal">
-            Access My Dashboard
-          </button>
-        </div>
-
-        <div class="col-lg-7">
-          <div class="row g-3">
-
-            <div class="col-sm-6">
-              <div class="prog-card">
-                <h4>Subject Progress</h4>
-                <div class="pb-row">
-                  <label>Chemistry <span>72%</span></label>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar"
-                      style="width:72%;background:var(--chem)"
-                      aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-                <div class="pb-row">
-                  <label>Biology <span>58%</span></label>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar"
-                      style="width:58%;background:var(--bio)"
-                      aria-valuenow="58" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-                <div class="pb-row">
-                  <label>Physics <span>45%</span></label>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar"
-                      style="width:45%;background:var(--phys)"
-                      aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-sm-6">
-              <div class="prog-card">
-                <h4>Recent Quiz Scores</h4>
-                <div class="pb-row">
-                  <label>Atomic Structure <span>18/20</span></label>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar"
-                      style="width:90%;background:var(--chem)"
-                      aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-                <div class="pb-row">
-                  <label>Cell Biology <span>14/20</span></label>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar"
-                      style="width:70%;background:var(--bio)"
-                      aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-                <div class="pb-row">
-                  <label>Forces &amp; Motion <span>16/20</span></label>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar"
-                      style="width:80%;background:var(--phys)"
-                      aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ── CTA ── -->
-  <section class="cta-section" aria-labelledby="cta-heading">
-    <div class="container text-center">
-      <h2 id="cta-heading">Ready to Start Your IGCSE Science Journey?</h2>
-      <p class="mx-auto" style="max-width:460px">
-        Join SciBrilliance today. Free account, full access to all three subjects,
-        notes, and quizzes. No card required.
-      </p>
-      <button class="btn-cta" data-bs-toggle="modal" data-bs-target="#loginModal">
-        Get Started — It Is Free
-      </button>
-    </div>
-  </section>
-
-</main>
-
-<!-- ═══════════════════ FOOTER ═══════════════════ -->
-<footer role="contentinfo">
-  <div class="container">
-    <div class="row gy-4">
-
-      <div class="col-lg-4">
-        <div class="foot-brand">Sci<span>Brilliance</span></div>
-        <p class="foot-desc">
-          IGCSE-focused science e-learning for Chemistry, Biology, and Physics.
-          Structured courses, downloadable notes, and progress tracking.
-        </p>
-        <nav aria-label="Social media links">
-          <a href="https://www.facebook.com/" class="social-link" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
-          <a href="https://x.com/" class="social-link" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
-          <a href="https://www.youtube.com/youtube" class="social-link" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
-          <a href="https://www.instagram.com/" class="social-link" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
-        </nav>
-      </div>
-
-      <div class="col-6 col-lg-2">
-        <h5>Platform</h5>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="courses.html">Courses</a></li>
-          <li><a href="resources.html">Resources</a></li>
-          <li><a href="quiz.html">Quiz</a></li>
-          <li><a href="forum.html">Forum</a></li>
-          <li><a href="feedback.html">Feedback</a></li>
-        </ul>
-      </div>
-
-      <div class="col-6 col-lg-2">
-        <h5>Subjects</h5>
-        <ul>
-          <li><a href="courses.html#chemistry">Chemistry</a></li>
-          <li><a href="courses.html#biology">Biology</a></li>
-          <li><a href="courses.html#physics">Physics</a></li>
-        </ul>
-      </div>
-
-      <div class="col-lg-4">
-        <h5>Quick Links</h5>
-        <ul>
-          <li><a href="resources.html#chem-notes">Chemistry Notes</a></li>
-          <li><a href="resources.html#bio-notes">Biology Notes</a></li>
-          <li><a href="resources.html#phys-notes">Physics Notes</a></li>
-          <li><a href="resources.html#general">General Study Guides</a></li>
-          <li><a href="quiz.html">Take a Practice Quiz</a></li>
-        </ul>
-      </div>
-
-    </div>
-    <hr class="foot-divider" />
-    <p class="foot-copy mb-0">
-      &copy; 2026 SciBrilliance. All rights reserved.
-      IGCSE is a registered trademark of Cambridge Assessment International Education.
-    </p>
-  </div>
-</footer>
-
-<!-- ═══════════════════ AUTH MODAL ═══════════════════ -->
-<div class="modal fade" id="loginModal" tabindex="-1"
-  aria-labelledby="loginModalLabel" aria-modal="true" role="dialog">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content border-0 overflow-hidden">
-
-      <div class="modal-header">
-        <h2 class="modal-title" id="loginModalLabel">SciBrilliance Account</h2>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-
-      <div class="modal-body">
-
-        <!-- Tab switcher -->
-        <div class="d-flex gap-2 mb-4" role="tablist" aria-label="Login or register tabs">
-          <button id="tab-login-btn" class="btn-mpri btn" role="tab"
-            aria-selected="true" aria-controls="panel-login"
-            onclick="showTab('login')">Log In</button>
-          <button id="tab-reg-btn" class="btn-msec btn" role="tab"
-            aria-selected="false" aria-controls="panel-register"
-            onclick="showTab('register')">Register</button>
-        </div>
-
-        <!-- Login panel -->
-        <div id="panel-login" role="tabpanel" aria-labelledby="tab-login-btn">
-          <div id="login-err" class="alert alert-danger d-none py-2 mb-3"
-            role="alert" aria-live="polite"></div>
-          <div class="mb-3">
-            <label for="l-email" class="form-label">Email Address</label>
-            <input type="email" id="l-email" class="form-control"
-              placeholder="your@email.com" autocomplete="email" required />
-          </div>
-          <div class="mb-3">
-            <label for="l-pass" class="form-label">Password</label>
-            <input type="password" id="l-pass" class="form-control"
-              placeholder="Your password" autocomplete="current-password" required />
-          </div>
-          <button class="btn-mpri btn mb-3" onclick="doLogin()">Log In</button>
-          <p class="text-center mb-0" style="font-size:.85rem;color:var(--muted)">
-            No account?
-            <span class="tab-sw" onclick="showTab('register')"
-              tabindex="0" role="button"
-              onkeydown="if(event.key==='Enter')showTab('register')">Register free</span>
-          </p>
-        </div>
-
-        <!-- Register panel -->
-        <div id="panel-register" class="d-none" role="tabpanel" aria-labelledby="tab-reg-btn">
-          <div id="reg-err" class="alert alert-danger d-none py-2 mb-3"
-            role="alert" aria-live="polite"></div>
-          <div class="info-box mb-3">
-            <i class="fa fa-info-circle me-1" aria-hidden="true"></i>
-            Free account — track your IGCSE progress across all three subjects.
-          </div>
-          <div class="mb-3">
-            <label for="r-name" class="form-label">Full Name</label>
-            <input type="text" id="r-name" class="form-control"
-              placeholder="Your full name" autocomplete="name" required />
-          </div>
-          <div class="mb-3">
-            <label for="r-email" class="form-label">Email Address</label>
-            <input type="email" id="r-email" class="form-control"
-              placeholder="your@email.com" autocomplete="email" required />
-          </div>
-          <div class="mb-3">
-            <label for="r-pass" class="form-label">Password</label>
-            <input type="password" id="r-pass" class="form-control"
-              placeholder="At least 6 characters" autocomplete="new-password" required />
-          </div>
-          <div class="mb-3">
-            <label for="r-pass2" class="form-label">Confirm Password</label>
-            <input type="password" id="r-pass2" class="form-control"
-              placeholder="Repeat your password" autocomplete="new-password" required />
-          </div>
-          <button class="btn-mpri btn mb-3" onclick="doRegister()">Create Account</button>
-          <p class="text-center mb-0" style="font-size:.85rem;color:var(--muted)">
-            Have an account?
-            <span class="tab-sw" onclick="showTab('login')"
-              tabindex="0" role="button"
-              onkeydown="if(event.key==='Enter')showTab('login')">Log in here</span>
-          </p>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════ SCRIPTS ═══════════════════ -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
-<script src="script.js"></script>
 </body>
 </html>
+
