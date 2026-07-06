@@ -1,257 +1,65 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quiz – SciBrilliance IGCSE</title>
-  <meta name="description" content="Practice IGCSE Chemistry, Biology and Physics quizzes with instant feedback and explanations on SciBrilliance." />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <style>
-    /* CSS Styles preserved exactly as provided in your original file */
-    :root{--navy:#0b1f3a;--navy2:#112d54;--teal:#0e8a8a;--teal-lt:#19b8b8;--gold:#d4a843;--gold-lt:#f0c96a;--cream:#f6f3ee;--white:#fff;--text:#1a2535;--muted:#5e6e82;--border:rgba(0,0,0,.09);--chem:#1b6e3a;--bio:#1250a0;--phys:#6b1f9b;--ok:#1b6e3a;--bad:#b71c1c}
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
-    body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--white);line-height:1.6}
-    h1,h2,h3,h4{font-family:'Cormorant Garamond',serif}
-    .skip-link{position:absolute;top:-120px;left:1rem;background:var(--gold);color:var(--navy);padding:.5rem 1.2rem;border-radius:4px;font-weight:600;z-index:9999;transition:top .2s;text-decoration:none}.skip-link:focus{top:1rem}
-    :focus-visible{outline:3px solid var(--gold);outline-offset:3px}
-    .navbar{background:var(--navy);padding:0;min-height:62px;box-shadow:0 2px 16px rgba(0,0,0,.3)}
-    .navbar-brand{padding:.85rem 0;text-decoration:none;display:flex;flex-direction:column;line-height:1}
-    .brand-name{font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:700;color:var(--white)}.brand-name span{color:var(--gold)}
-    .brand-tag{font-family:'DM Sans',sans-serif;font-size:.58rem;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.18em;margin-top:2px}
-    .navbar-nav .nav-link{color:rgba(255,255,255,.78)!important;font-size:.88rem;padding:1.15rem .9rem!important;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap}
-    .navbar-nav .nav-link:hover,.navbar-nav .nav-link.active{color:var(--gold)!important;border-bottom-color:var(--gold)}
-    .navbar-toggler{border:1px solid rgba(255,255,255,.3);padding:.35rem .6rem}
-    .navbar-toggler-icon{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255,255,255,.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")}
-    .btn-login-nav{background:var(--gold)!important;color:var(--navy)!important;border-radius:4px!important;font-weight:600!important;padding:.42rem 1.2rem!important;font-size:.88rem!important;border:none!important;cursor:pointer;transition:background .2s;border-bottom:none!important}
-    .page-banner{background:var(--navy);padding:2.75rem 0;position:relative;overflow:hidden}
-    .banner-inner{position:relative;z-index:2}
-    .page-banner h1{color:var(--white);font-size:clamp(1.8rem,4vw,2.7rem);margin-bottom:.4rem}
-    .page-banner p{color:rgba(255,255,255,.62);font-size:.97rem;max-width:560px;margin:0}
-    .breadcrumb-wrap{font-size:.82rem;margin-bottom:.9rem}
-    .breadcrumb-wrap a{color:var(--gold);text-decoration:none}.breadcrumb-wrap span{color:rgba(255,255,255,.4)}
-    .hub{padding:4rem 0;background:var(--cream)}
-    .hub-title{font-size:clamp(1.6rem,3vw,2.2rem);color:var(--navy);margin-bottom:.5rem;text-align:center}
-    .hub-sub{text-align:center;color:var(--muted);font-size:.97rem;margin-bottom:2.5rem}
-    .pick-card{background:var(--white);border:2px solid var(--border);border-radius:14px;padding:2rem 1.5rem;text-align:center;cursor:pointer;transition:all .25s;width:100%;font-family:'DM Sans',sans-serif;border-bottom:none}
-    .pick-card:hover{transform:translateY(-5px);box-shadow:0 12px 30px rgba(0,0,0,.12)}
-    .pc-icon{width:68px;height:68px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto 1rem;color:var(--white)}
-    .pick-card h3{font-size:1.15rem;color:var(--navy);margin-bottom:.35rem}
-    .arena{padding:4rem 0;display:none}
-    .arena-inner{max-width:700px;margin:0 auto}
-    .arena-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;margin-bottom:1.25rem}
-    .subj-badge{padding:.32rem .9rem;border-radius:20px;font-size:.8rem;font-weight:700;color:var(--white)}
-    .q-meta{font-size:.87rem;color:var(--muted)}
-    .btn-exit{background:transparent;border:1.5px solid rgba(0,0,0,.18);border-radius:6px;padding:.38rem .9rem;font-size:.82rem;cursor:pointer;font-family:'DM Sans',sans-serif;color:var(--muted);transition:all .2s}
-    .btn-exit:hover{border-color:var(--bad);color:var(--bad)}
-    .prog-track{height:6px;border-radius:8px;background:rgba(0,0,0,.08);margin-bottom:1.75rem;overflow:hidden}
-    .prog-fill{height:100%;border-radius:8px;transition:width .35s ease}
-    .q-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:2rem;box-shadow:0 2px 16px rgba(0,0,0,.06)}
-    .q-num{font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:600;margin-bottom:.5rem}
-    .q-text{font-family:'Cormorant Garamond',serif;font-size:1.18rem;color:var(--navy);line-height:1.55;margin-bottom:1.5rem}
-    .opt-btn{width:100%;text-align:left;padding:.85rem 1.2rem;border:2px solid var(--border);border-radius:10px;background:var(--white);font-family:'DM Sans',sans-serif;font-size:.93rem;color:var(--text);cursor:pointer;transition:all .2s;margin-bottom:.6rem;display:flex;align-items:center;gap:.85rem}
-    .opt-btn.correct{border-color:var(--ok);background:rgba(27,110,58,.07);color:var(--ok);font-weight:600}
-    .opt-btn.wrong{border-color:var(--bad);background:rgba(183,28,28,.06);color:var(--bad)}
-    .opt-ind{width:30px;height:30px;border-radius:50%;border:2px solid rgba(0,0,0,.14);display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;flex-shrink:0}
-    .exp-box{background:rgba(14,138,138,.06);border:1px solid rgba(14,138,138,.18);border-radius:9px;padding:1rem 1.2rem;margin-top:1rem;font-size:.88rem;color:var(--navy);line-height:1.65;display:none}
-    .btn-next{margin-top:1.25rem;padding:.65rem 1.75rem;border-radius:8px;border:none;font-weight:700;font-size:.93rem;cursor:pointer;transition:all .2s;display:none;font-family:'DM Sans',sans-serif;color:var(--white)}
-    .results{padding:4rem 0;background:var(--cream);display:none}
-    .res-card{background:var(--white);border-radius:16px;padding:2.5rem;text-align:center;box-shadow:0 4px 24px rgba(0,0,0,.1);max-width:520px;margin:0 auto}
-    .score-ring{width:118px;height:118px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 1.25rem;color:var(--white)}
-    .ring-pct{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:700}
-    .res-stats{display:flex;justify-content:center;gap:2.5rem;margin-bottom:1.75rem;flex-wrap:wrap}
-    .btn-res{padding:.7rem 1.6rem;border-radius:8px;border:none;font-weight:700;font-size:.9rem;cursor:pointer;transition:all .2s;margin:.3rem;font-family:'DM Sans',sans-serif;text-decoration:none;display:inline-block}
-    footer{background:#07162a;color:rgba(255,255,255,.6);padding:3rem 0 1.5rem}
-    .foot-brand{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:700;color:var(--white)}.foot-brand span{color:var(--gold)}
-    .btn-mpri{background:var(--navy);color:var(--white);border:none;border-radius:6px;font-weight:600;padding:.65rem;font-family:'DM Sans',sans-serif;font-size:.9rem;transition:background .2s;width:100%}
-    .btn-msec{background:transparent;color:var(--navy);border:1.5px solid rgba(0,0,0,.18);border-radius:6px;font-weight:500;padding:.62rem;font-family:'DM Sans',sans-serif;font-size:.9rem;transition:all .2s;width:100%}
-  </style>
-</head>
-<body>
-<a href="#main-content" class="skip-link">Skip to main content</a>
 
-<header class="navbar navbar-expand-lg sticky-top" role="banner">
-  <div class="container">
-    <a class="navbar-brand" href="index.html" aria-label="SciBrilliance – Home">
-      <span class="brand-name">Sci<span>Brilliance</span></span>
-      <span class="brand-tag">IGCSE Science Platform</span>
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <nav class="collapse navbar-collapse" id="mainNav" aria-label="Global navigation">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
-        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="courses.html">Courses</a></li>
-        <li class="nav-item"><a class="nav-link" href="resources.html">Resources</a></li>
-        <li class="nav-item"><a class="nav-link active" aria-current="page" href="quiz.html">Quiz</a></li>
-        <li class="nav-item"><a class="nav-link" href="forum.html">Forum</a></li>
-        <li class="nav-item"><a class="nav-link" href="feedback.html">Feedback</a></li>
-        <li class="nav-item ms-lg-3">
-          <button class="nav-link btn-login-nav" id="auth-btn" data-bs-toggle="modal" data-bs-target="#loginModal">
-            <i class="fa fa-user me-1" aria-hidden="true"></i>Log In
-          </button>
-        </li>
-      </ul>
-    </nav>
-  </div>
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+
+<header>
+    <h1>Combined Quiz</h1>
 </header>
 
-<section class="page-banner" aria-labelledby="banner-heading">
-  <div class="container banner-inner">
-    <nav class="breadcrumb-wrap" aria-label="Breadcrumb">
-      <a href="index.html">Home</a> <span> / Quiz</span>
-    </nav>
-    <h1 id="banner-heading">Practice Quizzes</h1>
-    <p>Test your IGCSE knowledge with 10-question quizzes, instant feedback, and detailed explanations for every answer.</p>
-  </div>
-</section>
-
-<main id="main-content">
-
-  <section class="hub" id="hub-section" aria-labelledby="hub-heading">
-    <div class="container">
-      <h2 class="hub-title" id="hub-heading">Choose a Subject</h2>
-      <p class="hub-sub">Select a subject below to begin your practice quiz. Your score is saved when you are logged in.</p>
-      <div class="row g-4 justify-content-center">
-        <div class="col-sm-6 col-lg-4">
-          <button class="pick-card" onclick="startQuiz('chemistry')" aria-label="Start Chemistry quiz">
-            <div class="pc-icon" style="background:var(--chem)" aria-hidden="true"><i class="fa fa-flask"></i></div>
-            <h3>Chemistry</h3>
-            <p>Atomic structure, bonding, reactions, organic chemistry, and more</p>
-          </button>
-        </div>
-        <div class="col-sm-6 col-lg-4">
-          <button class="pick-card" onclick="startQuiz('biology')" aria-label="Start Biology quiz">
-            <div class="pc-icon" style="background:var(--bio)" aria-hidden="true"><i class="fa fa-dna"></i></div>
-            <h3>Biology</h3>
-            <p>Cells, genetics, body systems, ecology, and evolution</p>
-          </button>
-        </div>
-        <div class="col-sm-6 col-lg-4">
-          <button class="pick-card" onclick="startQuiz('physics')" aria-label="Start Physics quiz">
-            <div class="pc-icon" style="background:var(--phys)" aria-hidden="true"><i class="fa fa-atom"></i></div>
-            <h3>Physics</h3>
-            <p>Forces, energy, waves, electricity, and nuclear physics</p>
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="arena" id="arena-section" aria-label="Active quiz arena">
-    <div class="container">
-      <div class="arena-inner">
-        <header class="arena-top">
-          <div class="d-flex align-items-center gap-2">
-            <span class="subj-badge" id="arena-badge" aria-label="Selected Subject"></span>
-            <span class="q-meta" id="arena-meta" aria-live="polite"></span>
-          </div>
-          <button class="btn-exit" onclick="exitQuiz()" aria-label="Exit quiz">
-            <i class="fa fa-xmark me-1" aria-hidden="true"></i>Exit Quiz
-          </button>
-        </header>
-
-        <div class="prog-track" role="progressbar" aria-label="Quiz progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="prog-wrap">
-          <div class="prog-fill" id="prog-fill" style="width:0%"></div>
-        </div>
-
-        <article class="q-card">
-          <div class="q-num" id="q-num" aria-live="polite"></div>
-          <h2 class="q-text" id="q-text"></h2>
-          <div id="q-options" role="radiogroup" aria-labelledby="q-text"></div>
-          
-          <aside class="exp-box" id="exp-box" aria-live="polite"></aside>
-          
-          <button class="btn-next" id="btn-next" onclick="nextQ()">
-            Next Question <i class="fa fa-arrow-right ms-1" aria-hidden="true"></i>
-          </button>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="results" id="results-section" aria-labelledby="res-title">
-    <div class="container">
-      <article class="res-card">
-        <div class="score-ring" id="score-ring" role="img" aria-label="Score visualization"></div>
-        <h2 id="res-title">Quiz Complete!</h2>
-        <p id="res-msg"></p>
+ <nav>
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="resources.html">Resources</a>
+        <a href="quiz.html">Quiz</a>
+        <a href="forum.html">Forum</a>
+        <a href="feedback.html">Feedback</a>
         
-        <div class="res-stats" aria-label="Final Statistics">
-          <div class="rs-item"><div class="val" id="res-correct" style="color:var(--ok)">0</div><div class="lbl">Correct</div></div>
-          <div class="rs-item"><div class="val" id="res-wrong" style="color:var(--bad)">0</div><div class="lbl">Incorrect</div></div>
-          <div class="rs-item"><div class="val" id="res-pct" style="color:var(--navy)">0%</div><div class="lbl">Score</div></div>
-        </div>
+    </nav>
 
-        <nav aria-label="Result actions">
-          <button class="btn-res" id="retry-btn" onclick="retryQuiz()" style="background:var(--teal);color:var(--white)">Try Again</button>
-          <button class="btn-res" onclick="exitQuiz()" style="background:var(--gold);color:var(--navy)">Choose Subject</button>
-          <a href="resources.html" class="btn-res" style="background:var(--navy);color:var(--white)">Review Notes</a>
-        </nav>
-      </article>
-    </div>
-  </section>
+    <p>Answer the questions below.</p>
 
-</main>
+    <form>
 
-<footer role="contentinfo">
-  <div class="container">
-    <div class="row gy-4">
-      <div class="col-lg-4">
-        <div class="foot-brand">Sci<span>Brilliance</span></div>
-        <p class="foot-desc">Practice quizzes for IGCSE Chemistry, Biology, and Physics with instant feedback.</p>
-      </div>
-      <div class="col-6 col-lg-2">
-        <h5>Links</h5>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="courses.html">Courses</a></li>
-          <li><a href="resources.html">Resources</a></li>
-          <li><a href="quiz.html">Quiz</a></li>
-          <li><a href="forum.html">Forum</a></li>
-          <li><a href="feedback.html">Feedback</a></li>
-        </ul>
-      </div>
-    </div>
-    <hr class="foot-divider"/>
-    <p class="foot-copy mb-0">© 2026 SciBrilliance. All rights reserved.</p>
-  </div>
-</footer>
+        <p><b>1. What planet do we live on?</b></p>
+        <input type="radio" name="q1"> Mars <br>
+        <input type="radio" name="q1"> Earth <br>
+        <input type="radio" name="q1"> Venus <br><br>
 
-<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content border-0">
-      <header class="modal-header">
-        <h2 class="modal-title" id="loginModalLabel">Account</h2>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </header>
-      <div class="modal-body">
-        <nav class="d-flex gap-2 mb-4" role="tablist">
-          <button id="tab-login-btn" class="btn-mpri btn" onclick="showTab('login')">Log In</button>
-          <button id="tab-reg-btn" class="btn-msec btn" onclick="showTab('register')">Register</button>
-        </nav>
-        <div id="panel-login">
-          <div id="login-err" class="alert alert-danger d-none py-2 mb-3"></div>
-          <div class="mb-3"><label class="form-label">Email</label><input type="email" id="l-email" class="form-control" /></div>
-          <div class="mb-3"><label class="form-label">Password</label><input type="password" id="l-pass" class="form-control" /></div>
-          <button class="btn-mpri btn" onclick="doLogin()">Log In</button>
-        </div>
-        <div id="panel-register" class="d-none">
-          <div id="reg-err" class="alert alert-danger d-none py-2 mb-3"></div>
-          <div class="mb-3"><label class="form-label">Name</label><input type="text" id="r-name" class="form-control" /></div>
-          <div class="mb-3"><label class="form-label">Email</label><input type="email" id="r-email" class="form-control" /></div>
-          <div class="mb-3"><label class="form-label">Password</label><input type="password" id="r-pass" class="form-control" /></div>
-          <div class="mb-3"><label class="form-label">Confirm</label><input type="password" id="r-pass2" class="form-control" /></div>
-          <button class="btn-mpri btn" onclick="doRegister()">Create Account</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+        <p><b>2. Water freezes at:</b></p>
+        <input type="radio" name="q2"> 50°C <br>
+        <input type="radio" name="q2"> 0°C <br>
+        <input type="radio" name="q2"> 100°C <br><br>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
-<script src="script.js"></script>
+        <p><b>3. Which part of the plant grows under the ground?</b></p>
+        <input type="radio" name="q3"> Flower <br>
+        <input type="radio" name="q3"> Leaves <br>
+        <input type="radio" name="q3"> Roots <br><br>
+
+        <p><b>4. The Sun is a:</b></p>
+        <input type="radio" name="q4"> Planet <br>
+        <input type="radio" name="q4"> Star <br>
+        <input type="radio" name="q4"> Moon <br><br>
+
+        <p><b>5. Humans breathe in:</b></p>
+        <input type="radio" name="q5"> Oxygen <br>
+        <input type="radio" name="q5"> Water <br>
+        <input type="radio" name="q5"> Sand <br><br>
+
+        <input type="submit" value="Submit Quiz">
+
+    </form>
+
+    <footer>
+          <p>&copy; 2026 SciBrilliance</p>
+    </footer>
 </body>
+
 </html>
