@@ -1,485 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Courses – SciBrilliance</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <style>
-    /* CSS remains identical to your original provided file to maintain visual consistency */
-    :root{
-      --navy:#0b1f3a; --navy2:#112d54; --teal:#0e8a8a; --teal-lt:#19b8b8;
-      --gold:#d4a843; --gold-lt:#f0c96a; --cream:#f6f3ee; --white:#fff;
-      --text:#1a2535; --muted:#5e6e82; --border:rgba(0,0,0,.09);
-      --chem:#1b6e3a; --bio:#1250a0; --phys:#6b1f9b;
-    }
-    body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--white);line-height:1.6}
-    h1,h2,h3,h4{font-family:'Cormorant Garamond',serif}
-    .navbar{background:var(--navy);padding:0;min-height:62px;box-shadow:0 2px 16px rgba(0,0,0,.3)}
-    .navbar-brand{padding:.85rem 0;text-decoration:none;display:flex;flex-direction:column;line-height:1}
-    .brand-name{font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:700;color:var(--white)}
-    .brand-name span{color:var(--gold)}
-    .brand-tag{font-family:'DM Sans',sans-serif;font-size:.58rem;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.18em;margin-top:2px}
-    .navbar-nav .nav-link{color:rgba(255,255,255,.78)!important;font-size:.88rem;padding:1.15rem .9rem!important;border-bottom:2px solid transparent;transition:all .2s}
-    .navbar-nav .nav-link:hover,.navbar-nav .nav-link.active{color:var(--gold)!important;border-bottom-color:var(--gold)}
-    .btn-login-nav{background:var(--gold)!important;color:var(--navy)!important;border-radius:4px!important;font-weight:600!important;padding:.42rem 1.2rem!important;font-size:.88rem!important;border:none!important}
-    
-    .page-header{background:var(--navy);padding:3.5rem 0;border-bottom:1px solid rgba(255,255,255,.1)}
-    .breadcrumb-area{background:var(--navy2);padding:.75rem 0}
-    .breadcrumb{margin:0;font-size:.8rem}
-    .breadcrumb-item a{color:var(--gold-lt);text-decoration:none}
-    .breadcrumb-item.active{color:rgba(255,255,255,.5)}
-    .breadcrumb-item+.breadcrumb-item::before{color:rgba(255,255,255,.2)}
-    
-    .course-sidebar{position:sticky;top:80px}
-    .side-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:1.5rem;margin-bottom:1.5rem}
-    .side-nav{list-style:none;padding:0;margin:0}
-    .side-nav li{margin-bottom:.5rem}
-    .side-nav a{display:flex;align-items:center;gap:.75rem;padding:.6rem .8rem;text-decoration:none;color:var(--muted);border-radius:6px;font-size:.9rem;transition:all .2s;font-weight:500}
-    .side-nav a:hover{background:var(--cream);color:var(--navy)}
-    .side-nav a.active{background:var(--navy);color:var(--white)}
-    
-    .subject-section{padding:4rem 0;border-bottom:1px solid var(--border)}
-    .subject-section:last-child{border-bottom:none}
-    .subject-badge{display:inline-block;padding:.25rem .75rem;border-radius:4px;font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;font-weight:700;margin-bottom:1rem;color:var(--white)}
-    .bg-chem{background:var(--chem)} .bg-bio{background:var(--bio)} .bg-phys{background:var(--phys)}
-    
-    .unit-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.5rem;height:100%;transition:all .25s;display:flex;flex-direction:column}
-    .unit-card:hover{box-shadow:0 10px 25px rgba(0,0,0,.08);transform:translateY(-3px)}
-    .unit-num{font-size:.75rem;font-weight:700;color:var(--gold);text-transform:uppercase;margin-bottom:.5rem;display:block}
-    .unit-card h4{font-size:1.15rem;color:var(--navy);margin-bottom:.6rem}
-    .unit-card p{font-size:.86rem;color:var(--muted);margin-bottom:.75rem}
-    .topic-list{list-style:none;padding:0;margin:0 0 1rem;flex-grow:1}
-    .topic-list li{font-size:.8rem;color:var(--muted);padding:.22rem 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.5rem}
-    .topic-list li::before{content:'›';color:var(--gold);font-weight:700;font-size:1rem}
-    .unit-meta{display:flex;justify-content:space-between;align-items:center;padding-top:.9rem;border-top:1px dashed var(--border);font-size:.78rem;color:var(--muted)}
-    .dl-unit-btn{display:inline-flex;align-items:center;gap:.35rem;font-size:.76rem;font-weight:600;color:var(--teal);text-decoration:none;border:1px solid var(--teal);border-radius:4px;padding:.25rem .65rem;transition:all .2s;white-space:nowrap}
-    .dl-unit-btn:hover{background:var(--teal);color:#fff}
-    
-    footer{background:#07162a;color:rgba(255,255,255,.6);padding:3.5rem 0 1.75rem}
-    .foot-brand{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:700;color:var(--white)}
-    .foot-brand span{color:var(--gold)}
-  </style>
+    <meta charset="UTF-8">
+    <title>Courses</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<nav class="navbar navbar-expand-lg sticky-top" aria-label="Main Navigation">
-  <div class="container">
-    <a class="navbar-brand" href="index.html">
-      <span class="brand-name">Sci<span>Brilliance</span></span>
-      <span class="brand-tag">IGCSE Science Platform</span>
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="mainNav">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
-        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-        <li class="nav-item"><a class="nav-link active" aria-current="page" href="courses.html">Courses</a></li>
-        <li class="nav-item"><a class="nav-link" href="resources.html">Resources</a></li>
-        <li class="nav-item"><a class="nav-link" href="quiz.html">Quiz</a></li>
-        <li class="nav-item"><a class="nav-link" href="forum.html">Forum</a></li>
-        <li class="nav-item"><a class="nav-link" href="feedback.html">Feedback</a></li>
-        <li class="nav-item ms-lg-3"><button class="nav-link btn-login-nav"><i class="fa fa-user me-1"></i>Log In</button></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+    <header>
+        <h1>Our Courses</h1>
+        <p>Welcome to our courses page.</p>
+    </header>
 
-<header class="page-header text-center">
-  <div class="container">
-    <h1 class="display-4 text-white fw-bold mb-2">Explore Our Courses</h1>
-    <p class="text-white-50 lead mx-auto" style="max-width:600px">Complete Cambridge IGCSE syllabus coverage for Chemistry, Biology, and Physics.</p>
-  </div>
-</header>
-
-<nav class="breadcrumb-area" aria-label="Breadcrumb">
-  <div class="container">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Courses</li>
-    </ol>
-  </div>
-</nav>
-
-<main class="container my-5">
-  <div class="row">
-    <aside class="col-lg-3">
-      <nav class="course-sidebar" aria-labelledby="sidebar-title">
-        <div class="side-card">
-          <h2 id="sidebar-title" class="h6 fw-bold text-uppercase mb-3" style="letter-spacing:1px">Subject Index</h2>
-          <ul class="side-nav">
-            <li><a href="#chemistry" class="active"><i class="fa fa-flask"></i> Chemistry</a></li>
-            <li><a href="#biology"><i class="fa fa-dna"></i> Biology</a></li>
-            <li><a href="#physics"><i class="fa fa-atom"></i> Physics</a></li>
-          </ul>
-        </div>
-        <div class="side-card bg-light">
-          <h3 class="h6 fw-bold mb-2">Need Help?</h3>
-          <p class="small text-muted mb-3">Can't find a specific topic? Visit our resource center or ask in the forum.</p>
-          <a href="resources.html" class="btn btn-sm btn-outline-dark w-100">View Resources</a>
-        </div>
-      </nav>
-    </aside>
-
-    <div class="col-lg-9">
-      <section id="chemistry" class="subject-section" aria-labelledby="chem-heading">
-        <header class="mb-5">
-          <span class="subject-badge bg-chem">Chemistry 0620</span>
-          <h2 id="chem-heading" class="display-6 fw-bold">IGCSE Chemistry</h2>
-          <p class="text-muted">A comprehensive study of matter, atoms, and chemical reactions.</p>
-        </header>
+     <nav>
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="resources.html">Resources</a>
+        <a href="quiz.html">Quiz</a>
+        <a href="forum.html">Forum</a>
+        <a href="feedback.html">Feedback</a>
         
-        <div class="row g-4">
-          <div class="col-md-6">
-            <article class="unit-card">
-              <span class="unit-num">Unit 1</span>
-              <h4>States of Matter</h4>
-              <ul class="topic-list">
-                <li>Kinetic particle theory</li>
-                <li>Properties of solids, liquids &amp; gases</li>
-                <li>Diffusion &amp; Brownian motion</li>
-                <li>Changes of state &amp; gas laws</li>
-              </ul>
-              <div class="unit-meta">
-                <span><i class="far fa-clock me-1"></i> 2.5 hrs · 8 Lessons</span>
-                <a href="https://pmt.physicsandmathstutor.com/download/Chemistry/GCSE/Notes/CIE-IGCSE/1-States-of-Matter/Detailed/1.1%20Solids%2C%20liquids%20and%20gases.pdf" target="_blank" rel="noopener" class="dl-unit-btn"><i class="fa fa-file-pdf"></i> Notes PDF</a>
-              </div>
-            </article>
-          </div>
-          <div class="col-md-6">
-            <article class="unit-card">
-              <span class="unit-num">Unit 2</span>
-              <h4>Atoms, Elements &amp; Compounds</h4>
-              <ul class="topic-list">
-                <li>Atomic structure &amp; subatomic particles</li>
-                <li>Isotopes &amp; relative atomic mass</li>
-                <li>Electronic configuration</li>
-                <li>The Periodic Table</li>
-              </ul>
-              <div class="unit-meta">
-                <span><i class="far fa-clock me-1"></i> 4 hrs · 12 Lessons</span>
-                <a href="https://pmt.physicsandmathstutor.com/download/Chemistry/GCSE/Notes/CIE-IGCSE/2-Atoms-Elements-and-Compounds/Detailed/2.2%20Atomic%20structure%20and%20the%20Periodic%20Table%20.pdf" target="_blank" rel="noopener" class="dl-unit-btn"><i class="fa fa-file-pdf"></i> Notes PDF</a>
-              </div>
-            </article>
-          </div>
-          <div class="col-md-6">
-            <article class="unit-card">
-              <span class="unit-num">Unit 3</span>
-              <h4>Stoichiometry</h4>
-              <ul class="topic-list">
-                <li>Chemical formulae &amp; equations</li>
-                <li>The mole concept</li>
-                <li>Empirical &amp; molecular formulae</li>
-                <li>Limiting reagents &amp; yield</li>
-              </ul>
-              <div class="unit-meta">
-                <span><i class="far fa-clock me-1"></i> 5 hrs · 15 Lessons</span>
-                <a href="https://pmt.physicsandmathstutor.com/download/Chemistry/GCSE/Notes/CIE-IGCSE/3-Stoichiometry/Detailed/3.1%20Formulae.pdf" target="_blank" rel="noopener" class="dl-unit-btn"><i class="fa fa-file-pdf"></i> Notes PDF</a>
-              </div>
-            </article>
-          </div>
-          <div class="col-md-6">
-            <article class="unit-card">
-              <span class="unit-num">Unit 4</span>
-              <h4>Organic Chemistry</h4>
-              <ul class="topic-list">
-                <li>Alkanes &amp; Alkenes</li>
-                <li>Alcohols &amp; carboxylic acids</li>
-                <li>Addition &amp; substitution reactions</li>
-                <li>Polymerisation</li>
-              </ul>
-              <div class="unit-meta">
-                <span><i class="far fa-clock me-1"></i> 6 hrs · 18 Lessons</span>
-                <a href="https://henniscience.weebly.com/uploads/1/2/0/8/12088969/c14_organic_chemistry.pdf" target="_blank" rel="noopener" class="dl-unit-btn"><i class="fa fa-file-pdf"></i> Notes PDF</a>
-              </div>
-            </article>
-          </div>
-          <div class="col-md-6">
-            <article class="unit-card">
-              <span class="unit-num">Unit 5</span>
-              <h4>Chemical Energetics</h4>
-              <ul class="topic-list">
-                <li>Exothermic &amp; endothermic reactions</li>
-                <li>Energy level diagrams</li>
-                <li>Bond breaking &amp; bond making</li>
-                <li>Activation energy &amp; catalysts</li>
-              </ul>
-              <div class="unit-meta">
-                <span><i class="far fa-clock me-1"></i> 3.5 hrs · 10 Lessons</span>
-                <a href="https://pmt.physicsandmathstutor.com/download/Chemistry/GCSE/Notes/CIE-IGCSE/5-Chemical-Energetics/Detailed/5.1%20Exothermic%20and%20endothermic%20reactions.pdf" target="_blank" rel="noopener" class="dl-unit-btn"><i class="fa fa-file-pdf"></i> Notes PDF</a>
-              </div>
-            </article>
-          </div>
-          <div class="col-md-6">
-            <article class="unit-card">
-              <span class="unit-num">Unit 6</span>
-              <h4>Acids, Bases &amp; Salts</h4>
-              <ul class="topic-list">
-                <li>pH scale &amp; indicators</li>
-                <li>Reactions of acids</li>
-                <li>Preparation of salts</li>
-                <li>Neutralisation &amp; titrations</li>
-              </ul>
-              <div class="unit-meta">
-                <span><i class="far fa-clock me-1"></i> 4 hrs · 11 Lessons</span>
-                <a href="https://pmt.physicsandmathstutor.com/download/Chemistry/GCSE/Notes/CIE-IGCSE/7-Acids-Bases-and-Salts/Detailed/7.1%20The%20characteristic%20properties%20of%20acids%20and%20bases.pdf" target="_blank" rel="noopener" class="dl-unit-btn"><i class="fa fa-file-pdf"></i> Notes PDF</a>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
+    </nav>
 
-      <section id="biology" class="subject-section" aria-labelledby="bio-heading">
-        <header class="mb-5">
-          <span class="subject-badge bg-bio">Biology 0610</span>
-          <h2 id="bio-heading" class="display-6 fw-bold">IGCSE Biology</h2>
-          <p class="text-muted">The study of living organisms and their interactions with the environment.</p>
-        </header>
+    <main>
 
-        <div class="row g-4">
-          <div class="col-md-6">
-            <article class="unit-card">
-              <span class="unit-num">Unit 1</span>
-              <h4>Characteristics of Living Things</h4>
-              <ul class="topic-list">
-                <li>MRS GREN life processes</li>
-                <li>Classification systems</li>
-                <li>Binomial nomenclature</li>
-                <li>Keys &amp; identification</li>
-              </ul>
-              <div class="unit-meta">
-                <span><i class="far fa-clock me-1"></i> 2 hrs · 6 Lessons</span>
-                <a href="https://pmt.physicsandmathstutor.com/download/Biology/GCSE/Notes/CIE-IGCSE/1-Characteristics-and-Classification-of-Living-Organisms/Definitions%20-%20Topic%201%20Characteristics%20and%20classification%20of%20living%20organisms%20-%20CAIE%20Biology%20IGCSE.pdf" target="_blank" rel="noopener" class="dl-unit-btn"><i class="fa fa-file-pdf"></i> Notes PDF</a>
-              </div>
-            </article>
-          </div>
-          <div class="col-md-6">
-            <article class="unit-card">
-              <span class="unit-num">Unit 2</span>
-              <h4>Cells &amp; Organisation</h4>
-              <ul class="topic-list">
-                <li>Plant vs animal cell organelles</li>
-                <li>Prokaryotic vs eukaryotic</li>
-                <li>Specialised cells</li>
-                <li>Levels of organisation</li>
-              </ul>
-              <div class="unit-meta">
-                <span><i class="far fa-clock me-1"></i> 3.5 hrs · 10 Lessons</span>
-                <a href="https://pmt.physicsandmathstutor.com/download/Biology/GCSE/Notes/CIE-IGCSE/2-Organisation-of-the-Organism/Summary%20Notes%20-%20Topic%202%20Organisation%20of%20the%20Organism%20-%20CAIE%20Biology%20IGCSE.pdf" target="_blank" rel="noopener" class="dl-unit-btn"><i class="fa fa-file-pdf"></i> Notes PDF</a>
-              </div>
-            </article>
-          </div>
-          <div class="col-md-6">
-            <article class="unit-card">
-              <span class="unit-num">Unit 3</span>
-              <h4>Biological Molecules</h4>
-              <ul class="topic-list">
-                <li>Carbohydrates, proteins &amp; lipids</li>
-                <li>Food tests (iodine, Benedict's, Biuret)</li>
-                <li>DNA structure &amp; base pairing</li>
-                <li>Enzymes &amp; catalysis</li>
-              </ul>
-              <div class="unit-meta">
-                <span><i class="far fa-clock me-1"></i> 4 hrs · 12 Lessons</span>
-                <a href="https://pmt.physicsandmathstutor.com/download/Biology/GCSE/Notes/CIE-IGCSE/4-Biological-Molecules/Summary%20Notes%20-%20Topic%204%20Biological%20Molecules%20-%20CAIE%20Biology%20IGCSE.pdf" target="_blank" rel="noopener" class="dl-unit-btn"><i class="fa fa-file-pdf"></i> Notes PDF</a>
-              </div>
-            </article>
-          </div>
-          <div class="col-md-6">
-            <article class="unit-card">
-              <span class="unit-num">Unit 4</span>
-              <h4>Nutrition &amp; Digestion</h4>
-              <ul class="topic-list">
-                <li>Nutrients &amp; balanced diet</li>
-                <li>Digestive system &amp; enzymes</li>
-                <li>Absorption in the small intestine</li>
-                <li>Photosynthesis in plants</li>
-              </ul>
-              <div class="unit-meta">
-                <span><i class="far fa-clock me-1"></i> 5 hrs · 14 Lessons</span>
-                <a href="https://pmt.physicsandmathstutor.com/download/Biology/GCSE/Notes/CIE-IGCSE/7-Human-Nutrition/Definitions%20-%20Topic%207%20Human%20nutrition%20-%20CAIE%20Biology%20IGCSE.pdf" target="_blank" rel="noopener" class="dl-unit-btn"><i class="fa fa-file-pdf"></i> Notes PDF</a>
-              </div>
-            </article>
-          </div>
-          <div class="col-md-6">
-            <article class="unit-card">
-              <span class="unit-num">Unit 5</span>
-              <h4>Respiration</h4>
-              <ul class="topic-list">
-                <li>Aerobic respiration equation</li>
-                <li>Anaerobic respiration</li>
-                <li>Gas exchange in lungs</li>
-                <li>Breathing mechanism</li>
-              </ul>
-              <div class="unit-meta">
-                <span><i class="far fa-clock me-1"></i> 3 hrs · 9 Lessons</span>
-                <a href="https://pmt.physicsandmathstutor.com/download/Biology/GCSE/Notes/CIE-IGCSE/12-Respiration/Summary%20Notes%20-%20Topic%2012%20Respiration%20-%20CAIE%20Biology%20IGCSE.pdf" target="_blank" rel="noopener" class="dl-unit-btn"><i class="fa fa-file-pdf"></i> Notes PDF</a>
-              </div>
-            </article>
-          </div>
-          <div class="col-md-6">
-            <article class="unit-card">
-              <span class="unit-num">Unit 6</span>
-              <h4>Reproduction &amp; Genetics</h4>
-              <ul class="topic-list">
-                <li>Mitosis vs meiosis</li>
-                <li>Sexual &amp; asexual reproduction</li>
-                <li>Mendelian genetics &amp; ratios</li>
-                <li>Mutations &amp; natural selection</li>
-              </ul>
-              <div class="unit-meta">
-                <span><i class="far fa-clock me-1"></i> 5 hrs · 16 Lessons</span>
-                <a href="https://pmt.physicsandmathstutor.com/download/Biology/GCSE/Notes/CIE-IGCSE/16-Reproduction/Definitions%20-%20Topic%2016%20Reproduction%20-%20CAIE%20Biology%20IGCSE.pdf" target="_blank" rel="noopener" class="dl-unit-btn"><i class="fa fa-file-pdf"></i> Notes PDF</a>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
+        <section>
+            <h2>Courses We Offer</h2>
 
-      <section id="physics" class="subject-section" aria-labelledby="phys-heading">
-        <header class="mb-5">
-          <span class="subject-badge bg-phys">Physics 0625</span>
-          <h2 id="phys-heading" class="display-6 fw-bold">IGCSE Physics</h2>
-          <p class="text-muted">Understanding the fundamental principles governing the universe.</p>
-        </header>
+            <p>Our website provides learning materials for three science subjects. These courses are suitable for students who want to improve their understanding of science.
+                These courses re mainly Physics, Chemistry and Biology.
+            </p>
 
-        <div class="row g-4">
-          <div class="col-md-6">
-            <article class="unit-card">
-              <span class="unit-num">Unit 1</span>
-              <h4>Forces &amp; Motion</h4>
-              <ul class="topic-list">
-                <li>Speed, velocity &amp; acceleration</li>
-                <li>Newton's laws of motion</li>
-                <li>Velocity-time graphs</li>
-                <li>Momentum &amp; energy conservation</li>
-              </ul>
-              <div class="unit-meta">
-                <span><i class="far fa-clock me-1"></i> 8 hrs · 24 Lessons</span>
-                <a href="https://pmt.physicsandmathstutor.com/download/Physics/GCSE/Notes/CIE-IGCSE/1-Motion-Forces-and-Energy/Summary%20Notes%20-%20Topic%201%20CAIE%20Physics%20IGCSE.pdf" target="_blank" rel="noopener" class="dl-unit-btn"><i class="fa fa-file-pdf"></i> Notes PDF</a>
-              </div>
+            <article>
+                <h3>Physics</h3>
+                <p>Learn about forces, energy, motion, electricity and other basic physics topics.</p>
+                <a href="resources.html">
+                    <button>View Physics Resources</button>
+                </a>
             </article>
-          </div>
-          <div class="col-md-6">
-            <article class="unit-card">
-              <span class="unit-num">Unit 2</span>
-              <h4>Thermal Physics</h4>
-              <ul class="topic-list">
-                <li>Kinetic particle model</li>
-                <li>Specific heat capacity</li>
-                <li>Conduction, convection &amp; radiation</li>
-                <li>Thermal expansion</li>
-              </ul>
-              <div class="unit-meta">
-                <span><i class="far fa-clock me-1"></i> 4 hrs · 12 Lessons</span>
-                <a href="https://pmt.physicsandmathstutor.com/download/Physics/GCSE/Notes/CIE-IGCSE/2-Thermal-Physics/Summary%20Notes%20-%20Topic%202%20CAIE%20Physics%20IGCSE.pdf" target="_blank" rel="noopener" class="dl-unit-btn"><i class="fa fa-file-pdf"></i> Notes PDF</a>
-              </div>
-            </article>
-          </div>
-          <div class="col-md-6">
-            <article class="unit-card">
-              <span class="unit-num">Unit 3</span>
-              <h4>Waves</h4>
-              <ul class="topic-list">
-                <li>Transverse &amp; longitudinal waves</li>
-                <li>Reflection, refraction &amp; diffraction</li>
-                <li>Sound &amp; light waves</li>
-                <li>Electromagnetic spectrum</li>
-              </ul>
-              <div class="unit-meta">
-                <span><i class="far fa-clock me-1"></i> 5 hrs · 15 Lessons</span>
-                <a href="https://pmt.physicsandmathstutor.com/download/Physics/GCSE/Notes/CIE-IGCSE/3-Waves/Summary%20Notes%20-%20Topic%203%20CAIE%20Physics%20IGCSE.pdf" target="_blank" rel="noopener" class="dl-unit-btn"><i class="fa fa-file-pdf"></i> Notes PDF</a>
-              </div>
-            </article>
-          </div>
-          <div class="col-md-6">
-            <article class="unit-card">
-              <span class="unit-num">Unit 4</span>
-              <h4>Electricity &amp; Magnetism</h4>
-              <ul class="topic-list">
-                <li>Ohm's Law &amp; resistance</li>
-                <li>Series &amp; parallel circuits</li>
-                <li>Magnetic fields &amp; motors</li>
-                <li>Electromagnetic induction</li>
-              </ul>
-              <div class="unit-meta">
-                <span><i class="far fa-clock me-1"></i> 6 hrs · 18 Lessons</span>
-                <a href="https://pmt.physicsandmathstutor.com/download/Physics/GCSE/Notes/CIE-IGCSE/4-Electricity-and-Magnetism/Summary%20Notes%20-%20Topic%204%20CAIE%20Physics%20IGCSE.pdf" target="_blank" rel="noopener" class="dl-unit-btn"><i class="fa fa-file-pdf"></i> Notes PDF</a>
-              </div>
-            </article>
-          </div>
-          <div class="col-md-6">
-            <article class="unit-card">
-              <span class="unit-num">Unit 5</span>
-              <h4>Nuclear Physics</h4>
-              <ul class="topic-list">
-                <li>Atomic nucleus &amp; radioactivity</li>
-                <li>Alpha, beta &amp; gamma radiation</li>
-                <li>Half-life calculations</li>
-                <li>Nuclear fission &amp; fusion</li>
-              </ul>
-              <div class="unit-meta">
-                <span><i class="far fa-clock me-1"></i> 4 hrs · 11 Lessons</span>
-                <a href="https://pmt.physicsandmathstutor.com/download/Physics/GCSE/Notes/CIE-IGCSE/5-Nuclear-Physics/Summary%20Notes%20-%20Topic%205%20CAIE%20Physics%20IGCSE.pdf" target="_blank" rel="noopener" class="dl-unit-btn"><i class="fa fa-file-pdf"></i> Notes PDF</a>
-              </div>
-            </article>
-          </div>
-          <div class="col-md-6">
-            <article class="unit-card">
-              <span class="unit-num">Unit 6</span>
-              <h4>Space Physics</h4>
-              <ul class="topic-list">
-                <li>Solar system &amp; planets</li>
-                <li>Stars &amp; stellar evolution</li>
-                <li>Orbital motion &amp; gravity</li>
-                <li>The Big Bang theory</li>
-              </ul>
-              <div class="unit-meta">
-                <span><i class="far fa-clock me-1"></i> 3 hrs · 9 Lessons</span>
-                <a href="https://pmt.physicsandmathstutor.com/download/Physics/GCSE/Notes/CIE-IGCSE/6-Space-Physics/Summary%20Notes%20-%20Topic%206%20CAIE%20Physics%20IGCSE.pdf" target="_blank" rel="noopener" class="dl-unit-btn"><i class="fa fa-file-pdf"></i> Notes PDF</a>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-    </div>
-  </div>
-</main>
 
-<footer role="contentinfo">
-  <div class="container">
-    <div class="row gy-4">
-      <div class="col-lg-4">
-        <div class="foot-brand">Sci<span>Brilliance</span></div>
-        <p class="small opacity-75 mt-3">Comprehensive IGCSE e-learning platform dedicated to student success in the sciences.</p>
-      </div>
-      <div class="col-6 col-lg-2">
-        <h5 class="h6 fw-bold text-white mb-3">Quick Links</h5>
-        <ul class="list-unstyled small">
-          <li><a href="index.html" class="text-white-50 text-decoration-none">Home</a></li>
-          <li><a href="courses.html" class="text-white-50 text-decoration-none">Courses</a></li>
-          <li><a href="resources.html" class="text-white-50 text-decoration-none">Resources</a></li>
-        </ul>
-      </div>
-      <div class="col-lg-4 ms-auto">
-        <h5 class="h6 fw-bold text-white mb-3">Newsletter</h5>
-        <p class="small text-white-50">Get the latest revision tips and updates.</p>
-        <div class="input-group">
-          <input type="email" class="form-control form-control-sm" placeholder="Email address">
-          <button class="btn btn-sm btn-gold text-navy fw-bold" style="background:var(--gold)">Join</button>
-        </div>
-      </div>
-    </div>
-    <hr class="mt-5 border-secondary">
-    <p class="text-center small opacity-50 mb-0">© 2026 SciBrilliance. All rights reserved.</p>
-  </div>
-</footer>
+            <br>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
-<script src="script.js"></script>
+            <article>
+                <h3>Chemistry</h3>
+                <p>Learn about atoms, elements, compounds, chemical reactions and laboratory safety.</p>
+                <a href="resources.html">
+                    <button>View Chemistry Resources</button>
+                </a>
+            </article>
+
+            <br>
+
+            <article>
+                <h3>Biology</h3>
+                <p>Learn about living organisms, plants, animals, the human body and ecosystems.</p>
+                <a href="resources.html">
+                    <button>View Biology Resources</button>
+                </a>
+            </article>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 SciBrilliance</p>
+    </footer>
+
 </body>
 </html>
