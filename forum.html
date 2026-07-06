@@ -1,200 +1,65 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Forum – SciBrilliance IGCSE</title>
-  <meta name="description" content="Join the SciBrilliance student forum to ask questions and discuss IGCSE Chemistry, Biology, and Physics topics." />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <style>
-    
-    :root{--navy:#0b1f3a;--navy2:#112d54;--teal:#0e8a8a;--teal-lt:#19b8b8;--gold:#d4a843;--gold-lt:#f0c96a;--cream:#f6f3ee;--white:#fff;--text:#1a2535;--muted:#5e6e82;--border:rgba(0,0,0,.09);--chem:#1b6e3a;--bio:#1250a0;--phys:#6b1f9b}
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
-    body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--white);line-height:1.6}
-    h1,h2,h3,h4{font-family:'Cormorant Garamond',serif}
-    .navbar{background:var(--navy);padding:0;min-height:62px;box-shadow:0 2px 16px rgba(0,0,0,.3)}
-    .navbar-brand{padding:.85rem 0;text-decoration:none;display:flex;flex-direction:column;line-height:1}
-    .brand-name{font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:700;color:var(--white)}.brand-name span{color:var(--gold)}
-    .brand-tag{font-family:'DM Sans',sans-serif;font-size:.58rem;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.18em;margin-top:2px}
-    .navbar-nav .nav-link{color:rgba(255,255,255,.78)!important;font-size:.88rem;padding:1.15rem .9rem!important;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap}
-    .navbar-nav .nav-link:hover,.navbar-nav .nav-link.active{color:var(--gold)!important;border-bottom-color:var(--gold)}
-    .btn-login-nav{background:var(--gold)!important;color:var(--navy)!important;border-radius:4px!important;font-weight:600!important;padding:.42rem 1.2rem!important;font-size:.88rem!important;border:none!important;cursor:pointer;transition:background .2s;border-bottom:none!important}
-    .page-banner{background:var(--navy);padding:2.75rem 0;position:relative}
-    .page-banner h1{color:var(--white);font-size:clamp(1.8rem,4vw,2.7rem);margin-bottom:.4rem}
-    .page-banner p{color:rgba(255,255,255,.62);font-size:.97rem;max-width:600px;margin:0}
-    .breadcrumb-wrap{font-size:.82rem;margin-bottom:.9rem}
-    .breadcrumb-wrap a{color:var(--gold);text-decoration:none}.breadcrumb-wrap span{color:rgba(255,255,255,.4)}
-    .forum-container{padding:3.5rem 0;background:var(--white)}
-    .cat-pill{padding:.45rem 1.1rem;border:1.5px solid rgba(0,0,0,.12);border-radius:20px;background:transparent;font-size:.85rem;font-weight:500;color:var(--muted);cursor:pointer;transition:all .2s}
-    .cat-pill:hover{border-color:var(--teal);color:var(--teal)}
-    .cat-pill.active{background:var(--navy);border-color:var(--navy);color:var(--white)}
-    .post-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:1.25rem;transition:transform .2s;cursor:pointer;position:relative}
-    .post-card:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.05)}
-    .post-badge{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;font-weight:700;padding:.2rem .6rem;border-radius:4px;margin-bottom:.75rem;display:inline-block}
-    .bg-chem{background:rgba(27,110,58,.1);color:var(--chem)}
-    .bg-bio{background:rgba(18,80,160,.1);color:var(--bio)}
-    .bg-phys{background:rgba(107,31,155,.1);color:var(--phys)}
-    .post-title{font-size:1.2rem;color:var(--navy);margin-bottom:.5rem;font-weight:700}
-    .post-excerpt{font-size:.88rem;color:var(--muted);margin-bottom:1rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-    .post-meta{display:flex;align-items:center;gap:1.25rem;font-size:.78rem;color:var(--muted);border-top:1px solid var(--border);padding-top:1rem}
-    .meta-item{display:flex;align-items:center;gap:.4rem}
-    .sidebar-card{background:var(--cream);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem}
-    .sidebar-card h3{font-size:1.1rem;color:var(--navy);margin-bottom:1rem;font-weight:700}
-    .btn-ask{background:var(--teal);color:var(--white);border:none;border-radius:8px;padding:.75rem;width:100%;font-weight:600;font-size:.92rem;transition:background .2s}
-    .btn-ask:hover{background:var(--teal-lt)}
-    footer{background:#07162a;color:rgba(255,255,255,.6);padding:3rem 0 1.5rem}
-    .foot-brand{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:700;color:var(--white)}.foot-brand span{color:var(--gold)}
-    .btn-mpri{background:var(--navy);color:var(--white);border:none;border-radius:6px;font-weight:600;padding:.65rem;font-family:'DM Sans',sans-serif;font-size:.9rem;width:100%}
-    .btn-msec{background:transparent;color:var(--navy);border:1.5px solid rgba(0,0,0,.18);border-radius:6px;font-weight:500;padding:.62rem;font-family:'DM Sans',sans-serif;font-size:.9rem;width:100%}
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forum — SciBrilliance</title>
+  <link rel="stylesheet" href="style.css">
+  
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> SciBrilliance Forum</title>
 </head>
+
 <body>
 
-<header role="banner">
-  <nav class="navbar navbar-expand-lg sticky-top">
-    <div class="container">
-      <a class="navbar-brand" href="index.html">
-        <span class="brand-name">Sci<span>Brilliance</span></span>
-        <span class="brand-tag">IGCSE Science Platform</span>
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="mainNav">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="courses.html">Courses</a></li>
-          <li class="nav-item"><a class="nav-link" href="resources.html">Resources</a></li>
-          <li class="nav-item"><a class="nav-link" href="quiz.html">Quiz</a></li>
-          <li class="nav-item"><a class="nav-link active" aria-current="page" href="forum.html">Forum</a></li>
-          <li class="nav-item"><a class="nav-link" href="feedback.html">Feedback</a></li>
-          <li class="nav-item ms-lg-3">
-            <button class="nav-link btn-login-nav" id="auth-btn" data-bs-toggle="modal" data-bs-target="#loginModal">
-              <i class="fa fa-user me-1"></i>Log In
-            </button>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+    <header>
+        <h1> Forum</h1>
+        <p>Welcome to the SciBrilliance forum. Ask questions and get to interact with other students.</p>
+    </header>
 
-  <section class="page-banner">
-    <div class="container">
-      <nav aria-label="breadcrumb">
-        <div class="breadcrumb-wrap">
-          <a href="index.html">Home</a> <span> / Forum</span>
-        </div>
-      </nav>
-      <h1>Student Forum</h1>
-      <p>Ask questions, share study tips, and discuss IGCSE Science topics with peers and instructors.</p>
-    </div>
-  </section>
-</header>
+     <nav>
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="resources.html">Resources</a>
+        <a href="quiz.html">Quiz</a>
+        <a href="forum.html">Forum</a>
+        <a href="feedback.html">Feedback</a>
+        
+    </nav>
 
-<main class="forum-container">
-  <div class="container">
-    <div class="row">
-      <section class="col-lg-8">
-        <div class="d-flex flex-wrap gap-2 mb-4" role="tablist">
-          <button class="cat-pill active" role="tab" aria-selected="true">All Topics</button>
-          <button class="cat-pill" role="tab" aria-selected="false">Chemistry</button>
-          <button class="cat-pill" role="tab" aria-selected="false">Biology</button>
-          <button class="cat-pill" role="tab" aria-selected="false">Physics</button>
-          <button class="cat-pill" role="tab" aria-selected="false">Exam Tips</button>
-        </div>
+    <main>
 
-        <div id="posts-list">
-          <div class="text-center py-5" style="color:var(--muted)">
-            <i class="fa fa-comments" style="font-size:2.5rem;opacity:.3;margin-bottom:1rem;display:block"></i>
-            <h3 style="font-family:'Cormorant Garamond',serif;color:var(--navy);margin-bottom:.5rem">No discussions yet</h3>
-            <p class="small mb-3">Be the first to start a conversation! Ask a question or share a study tip with fellow IGCSE students.</p>
-            <button class="btn-ask" style="width:auto;padding:.6rem 1.5rem" data-bs-toggle="modal" data-bs-target="#postModal">Start the First Discussion</button>
-          </div>
-        </div>
-      </section>
+        <section>
+            <h2>Ask a Question</h2>
 
-      <aside class="col-lg-4">
-        <section class="sidebar-card">
-          <h3>Start a Discussion</h3>
-          <p class="small text-muted mb-3">Have a specific question about your IGCSE syllabus? Post it here and get help from the community.</p>
-          <button class="btn-ask" data-bs-toggle="modal" data-bs-target="#postModal">Post a New Question</button>
+            <p>Use the form below to ask a science question.</p>
+
+            <form>
+
+                <label for="name">Name:</label><br>
+                <input type="text" id="name"><br><br>
+
+                <label for="question">Question:</label><br>
+                <textarea id="question" rows="5" cols="40"></textarea><br><br>
+
+                <input type="submit" value="Post">
+
+            </form>
         </section>
 
-        <section class="sidebar-card">
-          <h3>Community Guidelines</h3>
-          <ul class="small text-muted ps-3">
-            <li class="mb-2">Be respectful and supportive to other students.</li>
-            <li class="mb-2">Search for existing topics before posting a new one.</li>
-            <li class="mb-2">Use clear titles and specify the subject (Bio/Chem/Phys).</li>
-            <li>Do not post direct links to copyrighted exam papers.</li>
-          </ul>
+        <section>
+            <h2>Recent Questions</h2>
+
         </section>
-      </aside>
-    </div>
-  </div>
-</main>
 
-<footer role="contentinfo">
-  <div class="container">
-    <div class="row gy-4">
-      <div class="col-lg-4">
-        <div class="foot-brand">Sci<span>Brilliance</span></div>
-        <p class="small opacity-75 mt-3">The student forum is a place for collaboration and peer learning for IGCSE students worldwide.</p>
-      </div>
-      <div class="col-6 col-lg-2">
-        <h5 class="h6 fw-bold text-white mb-3">Sitemap</h5>
-        <ul class="list-unstyled small">
-          <li><a href="index.html" class="text-white-50 text-decoration-none">Home</a></li>
-          <li><a href="courses.html" class="text-white-50 text-decoration-none">Courses</a></li>
-          <li><a href="resources.html" class="text-white-50 text-decoration-none">Resources</a></li>
-          <li><a href="quiz.html" class="text-white-50 text-decoration-none">Quiz</a></li>
-          <li><a href="forum.html" class="text-white-50 text-decoration-none">Forum</a></li>
-          <li><a href="feedback.html" class="text-white-50 text-decoration-none">Feedback</a></li>
-        </ul>
-      </div>
-    </div>
-    <hr class="mt-5 border-secondary" style="opacity:.1">
-    <p class="text-center small opacity-50 mb-0">© 2026 SciBrilliance. All rights reserved.</p>
-  </div>
-</footer>
+    </main>
 
-<div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header border-0 pb-0"><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
-      <div class="modal-body p-4">
-        <div class="d-flex gap-2 mb-4">
-          <button class="btn-mpri btn">Log In</button>
-          <button class="btn-msec btn">Register</button>
-        </div>
-        <div class="mb-3"><label class="form-label small fw-bold">Email</label><input type="email" class="form-control" /></div>
-        <div class="mb-3"><label class="form-label small fw-bold">Password</label><input type="password" class="form-control" /></div>
-        <button class="btn-mpri btn py-2">Sign In</button>
-      </div>
-    </div>
-  </div>
-</div>
+    <footer>
+        <p>&copy; 2026 SciBrilliance</p>
+    </footer>
 
-<div class="modal fade" id="postModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header"><h5 class="modal-title fw-bold">New Discussion</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
-      <div class="modal-body p-4">
-        <div class="mb-3"><label class="form-label small fw-bold">Subject Category</label>
-          <select class="form-select"><option>Chemistry</option><option>Biology</option><option>Physics</option><option>General Study Tips</option></select>
-        </div>
-        <div class="mb-3"><label class="form-label small fw-bold">Title</label><input type="text" class="form-control" placeholder="e.g. Help with Electrolysis calculations" /></div>
-        <div class="mb-3"><label class="form-label small fw-bold">Message</label><textarea class="form-control" rows="5" placeholder="Describe your question in detail..."></textarea></div>
-        <button class="btn-ask py-2">Publish Post</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
-<script src="script.js"></script>
 </body>
 </html>
