@@ -38,3 +38,31 @@ function postQuestion(event) {
     event.preventDefault();
     alert("Your question has been posted.");
 }
+
+function makeMenuButton() {
+    var nav = document.querySelector("nav");
+
+    if (nav) {
+        var button = document.createElement("button");
+        button.innerHTML = "Hide Menu";
+        button.className = "menuButton";
+        button.onclick = toggleMenu;
+
+        nav.parentNode.insertBefore(button, nav);
+    }
+}
+
+function toggleMenu() {
+    var nav = document.querySelector("nav");
+    var button = document.querySelector(".menuButton");
+
+    if (nav.style.display == "none") {
+        nav.style.display = "block";
+        button.innerHTML = "Hide Menu";
+    } else {
+        nav.style.display = "none";
+        button.innerHTML = "Show Menu";
+    }
+}
+
+makeMenuButton();
