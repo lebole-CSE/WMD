@@ -20,6 +20,11 @@ nav {
     text-align: center;
 }
 
+.menuButton{
+    margin-top:10px;
+    margin-bottom:5px;
+}
+
 nav a {
     color: white;
     margin: 10px;
