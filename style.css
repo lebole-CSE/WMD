@@ -53,8 +53,11 @@ img {
 }
 
 button {
+    button, 
+    input[type="submit"]{
     background-color: rgb(87, 64, 3);
     padding: 5px;
+}
 }
 
 .ad-box {
