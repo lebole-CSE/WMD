@@ -52,6 +52,11 @@ img {
     max-width: 100%;
 }
 
+button{
+    background-color: brown;
+    padding: 5px;
+}
+
 button, 
     input[type="submit"]{
     background-color: rgb(87, 64, 3);
