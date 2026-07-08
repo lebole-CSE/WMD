@@ -44,7 +44,7 @@ function makeMenuButton() {
 
     if (nav) {
         var button = document.createElement("button");
-        button.innerHTML = "Hide Menu";
+        button.innerHTML = "☰";
         button.className = "menuButton";
         button.onclick = toggleMenu;
 
@@ -58,10 +58,10 @@ function toggleMenu() {
 
     if (nav.style.display == "none") {
         nav.style.display = "block";
-        button.innerHTML = "Hide Menu";
+        button.innerHTML = "☰";
     } else {
         nav.style.display = "none";
-        button.innerHTML = "Show Menu";
+        button.innerHTML = "☰";
     }
 }
 
