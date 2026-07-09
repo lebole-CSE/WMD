@@ -5,6 +5,12 @@ body {
     margin: 20px;
 }
 
+main{
+    backgound-color:#e0f2fe;
+    border-radius:16px;
+    padding:20px;
+}
+
 .menuButton{
     margin-top:10px;
     margin-bottom:5px;
