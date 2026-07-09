@@ -1,6 +1,7 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #0f172a;
+    color:#f1f5f9;
     margin: 20px;
 }
 
@@ -22,7 +23,7 @@ header {
 }
 
 nav {
-    background-color:rgb(87,64,3);
+    background-color:#1e1b4b;
     padding: 10px;
     text-align: center;
 }
@@ -41,9 +42,10 @@ main {
 section,
 .ad-box {
     background-color:#1e293b;
-    border: 2px solid black;
+    border: 1px solid #334155;
+    border-radius:8px;
     margin-top: 20px;
-    padding: 10px;
+    padding: 15px;
 }
 
 .subjects {
@@ -69,8 +71,13 @@ button{
 
 button, 
     input[type="submit"]{
-    background-color: #4f46e5;
-    padding: 5px;
+    background-color: #06b6d4;
+        color:#0f172a;
+        font-weight:bold;
+        border:none;
+        border-radius:4px;
+        padding: 8px ;
+        cursor:pointer;
 }
 .helpIcon {
     position: fixed;
@@ -99,10 +106,10 @@ button,
 
 footer {
     text-align: center;
-    background-color: rgb(114, 114, 236);
-    color: white;
-    padding: 5px;
-    margin-top: 20px;
+    background-color: ;#0f172a;
+    color: #94a3b8;
+    padding: 15px;
+    margin-top: 40px;
 }
 
 @media (max-width: 900px) {
