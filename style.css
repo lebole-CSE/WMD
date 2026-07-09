@@ -40,18 +40,21 @@ main {
 
 section,
 .ad-box {
+    background-color:#1e293b;
     border: 2px solid black;
     margin-top: 20px;
     padding: 10px;
 }
 
 .subjects {
+    background-color:#1e293b;
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
 }
 
 .subjects article {
+    background-color:#1e293b;
     width: 400px;
 }
 
