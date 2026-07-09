@@ -134,23 +134,18 @@ footer {
     margin-top: 40px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .menuButton{
         display:block;
-        background-color:#06b6d4;
-        color:#0f172a;
-         border: none;
-        padding: 8px 16px;
-        font-size: 24px;
-        font-weight: bold;
-        cursor: pointer;
-        border-radius: 6px;
-        margin-bottom: 10px;
     }
     
     nav{
-        display: block;
+        display: none;
     }
+    nav.open{
+        display:block;
+    }
+    
     .subjects article {
         width: 100%;
     }
