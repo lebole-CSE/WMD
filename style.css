@@ -32,6 +32,11 @@ header {
 
 nav {
     display:block;
+    display:flex
+    align-items:center;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
     background-color:#1e1b4b;
     padding: 10px;
     text-align: center;
@@ -48,6 +53,22 @@ nav a {
 main {
     background-color: #06b6d4;
     padding: 15px;
+}
+
+.navSearch {
+    display: inline-flex;
+    gap: 6px;
+    margin-left: 12px;
+}
+
+.navSearch input {
+    border: none;
+    border-radius: 4px;
+    padding: 8px;
+}
+
+.navSearch button {
+    padding: 8px 12px;
 }
 
 section,
@@ -162,6 +183,13 @@ footer {
     }
     nav.open{
         display:block;
+        display:flex;
+    }
+
+      .navSearch {
+        width: 100%;
+        justify-content: center;
+        margin-left: 0;
     }
     
     .subjects article {
