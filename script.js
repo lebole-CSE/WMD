@@ -65,4 +65,16 @@ function toggleMenu() {
     }
 }
 
+function makeHelpIcon() {
+    var help = document.createElement("a");
+    help.href = "feedback.html";
+    help.className = "helpIcon";
+    help.title = "Help";
+    help.setAttribute("aria-label", "Help");
+    help.innerHTML = "?";
+
+    document.body.appendChild(help);
+}
+
 makeMenuButton();
+makeHelpIcon();
