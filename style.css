@@ -70,6 +70,23 @@ button,
     background-color: rgb(87, 64, 3);
     padding: 5px;
 }
+.helpIcon {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: rgb(87, 64, 3);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
 
 
 .ad-box {
