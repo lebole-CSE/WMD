@@ -65,6 +65,33 @@ function toggleMenu() {
     }
 }
 
+function makeNavSearch() {
+    var nav = document.querySelector("nav");
+
+    if (nav && !document.getElementById("searchBox")) {
+        var searchForm = document.createElement("form");
+        searchForm.className = "navSearch";
+        searchForm.onsubmit = function(event) {
+            event.preventDefault();
+            searchTopic();
+        };
+
+        var input = document.createElement("input");
+        input.type = "text";
+        input.id = "searchBox";
+        input.placeholder = "Search topic";
+
+        var button = document.createElement("button");
+        button.type = "submit";
+        button.innerHTML = "Search";
+
+        searchForm.appendChild(input);
+        searchForm.appendChild(button);
+        nav.appendChild(searchForm);
+    }
+}
+
+
 function makeHelpIcon() {
     var help = document.createElement("a");
     help.href = "feedback.html";
@@ -77,4 +104,5 @@ function makeHelpIcon() {
 }
 
 makeMenuButton();
+makeNavSearch();
 makeHelpIcon();
