@@ -5,6 +5,7 @@ body {
 }
 
 .menuButton{
+    display:none;
     margin-top:10px;
     margin-bottom:5px;
     font-size:20px;
@@ -22,7 +23,8 @@ header {
 }
 
 nav {
-    background-color: lightblue;
+    display: none;
+    background-color:rgb(87,64,3);
     padding: 10px;
     text-align: center;
 }
@@ -86,6 +88,13 @@ footer {
 }
 
 @media (max-width: 900px) {
+    .menuButton{
+        display:block;
+    }
+    
+    nav{
+        display: block;
+    }
     .subjects article {
         width: 100%;
     }
