@@ -96,6 +96,16 @@ button,
     text-decoration: none;
 }
 
+a{
+    colour:#38bdf8;
+    text-decoration:none;
+    font-weight:500;
+}
+
+a:hover{
+    color:#22d3ee;
+    text-decoration:underline;
+}
 
 
 .ad-box {
