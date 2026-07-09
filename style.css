@@ -13,6 +13,11 @@ main{
 
 .menuButton{
    display:none;
+       margin-top: 10px;
+   margin-bottom: 5px;
+   font-size: 20px;
+   width: 40px;
+
 }
 
 header {
@@ -39,12 +44,6 @@ nav a {
     font-weight: bold;
     text-decoration:none;
 }
-nav{
-     background-color: #1e1b4b;
-    padding: 15px;
-    border-radius: 8px;
-}
-
 
 main {
     background-color: #06b6d4;
@@ -132,6 +131,25 @@ footer {
     color: #94a3b8;
     padding: 15px;
     margin-top: 40px;
+}
+
+.main-layout {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+.content-left {
+    flex: 3;
+}
+.sidebar-right {
+    flex: 1;
+    position: sticky;
+    top: 20px;
+}
+.sidebar-right .ad-box {
+    margin-top: 0;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 @media (max-width: 900px) {
