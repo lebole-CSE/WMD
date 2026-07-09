@@ -40,23 +40,11 @@ nav a {
     text-decoration:none;
 }
 nav{
-    display:none;
      background-color: #1e1b4b;
     padding: 15px;
     border-radius: 8px;
 }
 
- nav.open {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-    }
-    
-    nav a {
-        margin: 5px 0;
-        padding: 8px;
-        border-bottom: 1px solid #334155;
-    }
 
 main {
     background-color: #06b6d4;
