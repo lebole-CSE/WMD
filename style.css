@@ -201,13 +201,17 @@ footer {
 
 @media (max-width: 900px) {
     .menuButton{
-        display:block;
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
+        vertical-align:middle; 
     }
     
     nav{
         display: none;
         flex-direction:column;
         align-items:center;
+        margin-top:10px;
     }
     
     nav.open{
