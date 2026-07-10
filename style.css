@@ -6,7 +6,7 @@ body {
 }
 
 main{
-    backgound-color:#e0f2fe;
+    background-color:#e0f2fe;
     border-radius:16px;
     padding:20px;
 }
@@ -145,13 +145,13 @@ button,
 }
 
 a{
-    colour:#67e8f9;
+    colour:#facc15;
     text-decoration:none;
     font-weight:500;
 }
 
 a:hover{
-    color:#a5f3fc;
+    color:#facc15;
     text-decoration:underline;
 }
 
