@@ -15,9 +15,10 @@ main{
    display:none;
        margin-top: 10px;
    margin-bottom: 5px;
-   font-size: 20px;
-   width: 40px;
-
+   font-size: 32px;
+   width: 55px;
+    height:45px;
+    padding:5px;
 }
 
 header {
@@ -205,9 +206,11 @@ footer {
     
     nav{
         display: none;
+        flex-direction:column;
+        align-items:center;
     }
+    
     nav.open{
-        display:block;
         display:flex;
     }
 
@@ -216,6 +219,22 @@ footer {
         justify-content: center;
         margin-left: 0;
     }
+
+    .navSearch{
+        width:100%;
+        justify-content: center;
+        margin-left: 0;
+    }
     
     .subjects article {
         width: 100%;
+    }
+
+    .main-layout{
+        flex-direction:column;
+    }
+
+    .content-left,sidebar-right{
+        width:100%
+    }
+}
