@@ -33,18 +33,12 @@ function makeMenuButton() {
 }
 
 function toggleMenu() {
-    var nav = document.querySelector("nav");
+    const nav = document.querySelector("nav");
 
-    var button = document.querySelector(".menuButton");
-
-    if (nav.style.display == "none") {
-        nav.style.display = "block";
-        button.innerHTML = "☰";
-    } else {
-        nav.style.display = "none";
-        button.innerHTML = "☰";
-    }
-}
+    const menuButton = document.querySelector(".menuButton");
+    menuButton.addEventListener("click",() => {
+        nav.classList.toggle("open");
+    });
 
 function makeNavSearch() {
     var header = document.querySelector("header");
