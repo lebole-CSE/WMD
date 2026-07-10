@@ -162,6 +162,17 @@ a:hover{
     padding: 10px;
 }
 
+section ul li a {
+    color: #facc15;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+section ul li a:hover {
+    color: #a5f3fc;
+    text-decoration: underline;
+}
+
 footer {
     text-align: center;
     background-color: ;#0f172a;
