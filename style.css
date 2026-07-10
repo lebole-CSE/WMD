@@ -56,9 +56,10 @@ main {
 }
 
 .navSearch {
-    display: inline-flex;
+    display: flex;
+    justify-content: center;
     gap: 6px;
-    margin-left: 12px;
+    margin-left: 10px auto 0;
 }
 
 .navSearch input {
