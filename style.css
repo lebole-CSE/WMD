@@ -124,9 +124,8 @@ button,
 
 .sidebar-right{
     flex:1;
-    position:sticky;
-    top:20px;
 }
+
 .helpIcon {
     position: fixed;
     right: 20px;
@@ -158,8 +157,9 @@ a:hover{
 
 .ad-box {
     border: 2px solid black;
+    border-radius: 12px;
     margin-top: 20px;
-    padding: 10px;
+    padding: 18px;
 }
 
 section ul li a {
@@ -189,10 +189,7 @@ footer {
 .content-left {
     flex: 3;
 }
-.sidebar-right {
-    flex: 1;
-    position: sticky;
-    top: 20px;
+
 }
 .sidebar-right .ad-box {
     margin-top: 0;
