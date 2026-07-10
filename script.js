@@ -35,9 +35,9 @@ function makeMenuButton() {
 function toggleMenu() {
     const nav = document.querySelector("nav");
 
-    const menuButton = document.querySelector(".menuButton");
-    menuButton.addEventListener("click",() => {
-        nav.classList.toggle("open");
+    const menuButton = document.querySelector('.menuButton');
+    menuButton.addEventListener('click',() => {
+        nav.classList.toggle('open');
     });
 
 function makeNavSearch() {
