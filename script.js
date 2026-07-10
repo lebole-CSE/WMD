@@ -22,13 +22,17 @@ function postQuestion(event) {
 function makeMenuButton() {
     var nav = document.querySelector("nav");
 
-    if (nav) {
+    if (nav&& !document.querySelector(".menuButton")) {
         var button = document.createElement("button");
         button.innerHTML = "☰";
         button.className = "menuButton";
-        button.onclick = toggleMenu;
+        menuButton.setAttribute("aria-label", "Open navigation menu");
 
-        nav.parentNode.insertBefore(button, nav);
+        menuButton.addEventListener("click", function() {
+            nav.classList.toggle("open");
+        });
+
+        nav.parentNode.insertBefore(menuButton, nav);
     }
 }
 
@@ -41,17 +45,17 @@ function toggleMenu() {
     });
 
 function makeNavSearch() {
-    var header = document.querySelector("header");
+    var nav = document.querySelector("nav");
 
-    if (header && !document.getElementById("searchBox")) {
+    if (nav && !document.getElementById("searchBox")) {
         var searchForm = document.createElement("form");
         searchForm.className = "navSearch";
         
-        searchForm.onsubmit = function(event) {
+      searchForm.addEventListener("submit", function(event) {
             event.preventDefault();
             searchTopic();
-        };
-
+        });
+        
         var input = document.createElement("input");
         input.type = "text";
         input.id = "searchBox";
