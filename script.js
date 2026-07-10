@@ -33,7 +33,8 @@ function makeMenuButton() {
 }
 
 function toggleMenu() {
-    var nav = document.querySelector("header");
+    var nav = document.querySelector("nav");
+
     var button = document.querySelector(".menuButton");
 
     if (nav.style.display == "none") {
@@ -46,7 +47,7 @@ function toggleMenu() {
 }
 
 function makeNavSearch() {
-    var nav = document.querySelector("header");
+    var header = document.querySelector("header");
 
     if (header && !document.getElementById("searchBox")) {
         var searchForm = document.createElement("form");
