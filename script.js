@@ -33,7 +33,7 @@ function makeMenuButton() {
 }
 
 function toggleMenu() {
-    var nav = document.querySelector("nav");
+    var nav = document.querySelector("header");
     var button = document.querySelector(".menuButton");
 
     if (nav.style.display == "none") {
@@ -67,7 +67,7 @@ function makeNavSearch() {
 
         searchForm.appendChild(input);
         searchForm.appendChild(button);
-        nav.appendChild(searchForm);
+        header.insertAdjacentElement("afterend",searchForm);
     }
 }
 
