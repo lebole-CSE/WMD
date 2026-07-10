@@ -46,11 +46,12 @@ function toggleMenu() {
 }
 
 function makeNavSearch() {
-    var nav = document.querySelector("nav");
+    var nav = document.querySelector("header");
 
-    if (nav && !document.getElementById("searchBox")) {
+    if (header && !document.getElementById("searchBox")) {
         var searchForm = document.createElement("form");
         searchForm.className = "navSearch";
+        
         searchForm.onsubmit = function(event) {
             event.preventDefault();
             searchTopic();
