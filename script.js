@@ -23,9 +23,9 @@ function makeMenuButton() {
     var nav = document.querySelector("nav");
 
     if (nav&& !document.querySelector(".menuButton")) {
-        var button = document.createElement("button");
-        button.innerHTML = "☰";
-        button.className = "menuButton";
+        var menuButton = document.createElement("button");
+        menuButton.innerHTML = "☰";
+        menuButton.className = "menuButton";
         menuButton.setAttribute("aria-label", "Open navigation menu");
 
         menuButton.addEventListener("click", function() {
@@ -35,14 +35,6 @@ function makeMenuButton() {
         nav.parentNode.insertBefore(menuButton, nav);
     }
 }
-
-function toggleMenu() {
-    const nav = document.querySelector("nav");
-
-    const menuButton = document.querySelector('.menuButton');
-    menuButton.addEventListener('click',() => {
-        nav.classList.toggle('open');
-    });
 
 function makeNavSearch() {
     var nav = document.querySelector("nav");
@@ -70,7 +62,6 @@ function makeNavSearch() {
         header.insertAdjacentElement("afterend",searchForm);
     }
 }
-
 
 function makeHelpIcon() {
     var help = document.createElement("a");
