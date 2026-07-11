@@ -59,7 +59,7 @@ function makeNavSearch() {
 
         searchForm.appendChild(input);
         searchForm.appendChild(button);
-        header.insertAdjacentElement("searchForm,nav);
+        nav.parentNode.insertBefore("searchForm,nav);
     }
 }
 
